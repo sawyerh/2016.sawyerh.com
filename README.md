@@ -7,4 +7,4 @@
 Influenced by [@DestroyToday](http://twitter.com/destroytoday) previously [doing this](https://github.com/destroytoday/destroytoday.com/wiki) and the quote above, I'll be designing, prototyping, and building my personal site in the open. All iterations will be committed here and [tweeted out](http://twitter.com/sawyerh) as I progress. I fully expect this to be way more stressful than I initially guessed, so if you're digging it, [holler at me](http://twitter.com/sawyerh). [Some more info here](https://medium.com/@sawyerh/designing-and-building-my-personal-website-naked-e63243b285b1).
 
 - [Initial inspiration and brainstorming](http://sawyer.dropmark.com/234211)
-- [Progress](https://github.com/sawyerh/2016.sawyerh.com/wiki/progress)
+- [Progress](http://sawyer.dropmark.com/286259)

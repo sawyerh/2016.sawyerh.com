@@ -1,0 +1,108 @@
+<html>
+<head>
+  <style>
+    body{
+      background: #000;
+    }
+
+    #galaxy{
+      height: 400px;
+      width: 1000px;
+      margin: 100px auto;
+      border: 2px dashed #303030;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="galaxy"></canvas>
+
+  <script type="text/javascript" src="js/paper-full.js"></script>
+  <script type="text/javascript" src="js/lodash.js"></script>
+  <script type="text/javascript">
+    function draw(){
+      var canvasEl = document.querySelector('#galaxy');
+      var canvasHeight = canvasEl.offsetHeight;
+      var canvasWidth = canvasEl.offsetWidth;
+      var p = paper;
+      p.setup(canvasEl);
+
+      var totalNodes = 80;
+      var points = [];
+      var n = 1;
+
+      // Plot the dots
+      while(n <= totalNodes){
+        var x = getRand(30, canvasWidth - 30);
+        var y = getRand(30, canvasHeight - 30);
+        var point = new p.Point(x, y);
+        var minor = n % 7;
+
+        var node = new p.Path.Circle({
+            center: point,
+            radius: minor ? 3 : 4,
+            fillColor: minor ? '#5E5E5E' : 'red'
+        });
+
+        node.onClick = function(event) {
+          console.log(event.point);
+        }
+
+        // When the mouse enters the item, set its fill color to red:
+        node.onMouseEnter = function(event) {
+          this.fillColor = 'green';
+        }
+
+        // When the mouse leaves the item, set its fill color to black:
+        node.onMouseLeave = function(event) {
+          this.fillColor = 'yellow';
+        }
+
+        points.push(point);
+        n++;
+      }
+
+      // Connect the dotes
+      while(points.length){
+        var point = points.pop();
+        var connections = 0;
+
+        points.some(function(otherPoint){
+          var dx = Math.abs((otherPoint.x - point.x) / 100);
+          var dy = Math.abs((otherPoint.y - point.y) / 100);
+
+          if(dx <= 1 && dy <= 1){
+            new p.Path({
+              segments: [point, otherPoint],
+              strokeColor: "#303030"
+            });
+
+            connections++;
+          }
+
+          return connections === 3;
+        });
+      }
+
+      p.view.draw();
+    }
+
+    function showIntersections(path1, path2) {
+      var intersections = path1.getIntersections(path2);
+      for (var i = 0; i < intersections.length; i++) {
+        new paper.Path.Circle({
+            center: intersections[i].point,
+            radius: 5,
+            fillColor: '#009dec'
+        });
+      }
+    }
+
+    function getRand(min, max) {
+      return Math.floor(Math.random() * (max - min)) + min;;
+    }
+
+    draw();
+  </script>
+</body>
+</html>

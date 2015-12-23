@@ -19,32 +19,78 @@
   <script type="text/javascript" src="js/paper-full.js"></script>
   <script type="text/javascript" src="js/lodash.js"></script>
   <script type="text/javascript">
+    var canvasEl = document.querySelector('#galaxy');
+    var canvasHeight = canvasEl.offsetHeight;
+    var canvasWidth = canvasEl.offsetWidth;
+    var colors = ['#F2C923', '#17BBAD', '#1D4875', '#9A29BC', '#0221B6', '#B5A695'];
+    var totalNodes = 100;
+    var points = [];
+
     function draw(){
-      var canvasEl = document.querySelector('#galaxy');
-      var canvasHeight = canvasEl.offsetHeight;
-      var canvasWidth = canvasEl.offsetWidth;
-      var colors = ['#F2C923', '#17BBAD', '#1D4875', '#9A29BC', '#0221B6', '#B5A695'];
-      var totalNodes = 100;
-      var points = [];
+      var grid = calcGrid(canvasHeight, canvasWidth);
+      console.log(grid);
+      paper.setup(canvasEl);
+      _debugGrid(grid);
 
-      var p = paper;
-      p.setup(canvasEl);
-
-      var linesLayer = new p.Layer();
-      var dotsLayer = new p.Layer();
+      var linesLayer = new paper.Layer();
+      var dotsLayer = new paper.Layer();
       dotsLayer.activate();
 
+      createPoints();
+
+      linesLayer.activate();
+
+      paper.view.draw();
+
+      // Connect the dotes
+      var timer = window.setInterval(function(){
+        if(points.length){
+          var point = points.pop();
+          connectPoint(point, points);
+        } else {
+          window.clearInterval(timer);
+        }
+      }, 10);
+    }
+
+    function _debugGrid(grid){
+      var rows = 0;
+      var rowHeight = canvasHeight / grid.rows;
+      var columnWidth = canvasWidth / grid.columns;
+
+      for (var row = grid.rows; row > 0; row--) {
+        var start = new paper.Point(0, rowHeight * row);
+        var end = new paper.Point(canvasWidth, rowHeight * row);
+
+        new paper.Path({
+          segments: [start, end],
+          strokeColor: "red"
+        });
+      }
+
+      for (var column = grid.columns; column > 0; column--) {
+        var start = new paper.Point(columnWidth * column, 0);
+        var end = new paper.Point(columnWidth * column, canvasHeight);
+
+        new paper.Path({
+          segments: [start, end],
+          strokeColor: "red"
+        });
+      }
+    }
+
+    function createPoints(){
       // Plot the dots
       var n = 1;
       while(n <= totalNodes){
         var x = getRand(30, canvasWidth - 30);
         var y = getRand(30, canvasHeight - 30);
-        var point = new p.Point(x, y);
+        var point = new paper.Point(x, y);
             point.connections = 0;
 
         var minor = n % 5;
 
-        var node = new p.Path.Circle({
+        var node = new paper.Path.Circle({
             center: point,
             radius: minor ? getRand(1, 2.5) : getRand(3, 5),
             fillColor: minor ? '#5E5E5E' : colors[getRand(0, colors.length)]
@@ -67,20 +113,6 @@
         points.push(point);
         n++;
       }
-
-      linesLayer.activate();
-
-      p.view.draw();
-
-      // Connect the dotes
-      var timer = window.setInterval(function(){
-        if(points.length){
-          var point = points.pop();
-          connectPoint(point, points);
-        } else {
-          window.clearInterval(timer);
-        }
-      }, 10);
     }
 
     function connectPoint(point, points){
@@ -106,6 +138,15 @@
       });
 
       paper.view.draw();
+    }
+
+    function calcGrid(height, width) {
+      var size = 150;
+
+      return {
+        rows: Math.floor(height / size),
+        columns: Math.floor(width / size)
+      }
     }
 
     function getRand(min, max) {

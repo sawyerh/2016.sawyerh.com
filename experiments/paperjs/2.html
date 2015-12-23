@@ -6,7 +6,7 @@
     }
 
     #galaxy{
-      height: 400px;
+      height: 500px;
       width: 100%;
       margin: 100px auto;
       border: 2px dashed #303030;
@@ -41,11 +41,13 @@
         var x = getRand(30, canvasWidth - 30);
         var y = getRand(30, canvasHeight - 30);
         var point = new p.Point(x, y);
+            point.connections = 0;
+
         var minor = n % 5;
 
         var node = new p.Path.Circle({
             center: point,
-            radius: minor ? 2 : 4,
+            radius: minor ? getRand(1, 2.5) : getRand(3, 5),
             fillColor: minor ? '#5E5E5E' : colors[getRand(0, colors.length)]
         });
 
@@ -69,34 +71,42 @@
 
       linesLayer.activate();
 
-      // Connect the dotes
-      while(points.length){
-        connectPoint(points.pop(), points);
-      }
-
       p.view.draw();
+
+      // Connect the dotes
+      var timer = window.setInterval(function(){
+        if(points.length){
+          var point = points.pop();
+          connectPoint(point, points);
+        } else {
+          window.clearInterval(timer);
+        }
+      }, 10);
     }
 
     function connectPoint(point, points){
       var connections = 0;
-      var maxConnections = getRand(1, 3);
+      var maxConnections = 3;
       var connectionRadius = 150;
 
       points.some(function(otherPoint){
         var dx = Math.abs((otherPoint.x - point.x) / connectionRadius);
         var dy = Math.abs((otherPoint.y - point.y) / connectionRadius);
 
-        if(dx <= 1 && dy <= 1){
-          connections++;
+        if(dx <= 1 && dy <= 1 && otherPoint.connections < maxConnections){
+          point.connections++;
+          otherPoint.connections++;
 
           new paper.Path({
             segments: [point, otherPoint],
-            strokeColor: "#212121"
+            strokeColor: "#303030"
           });
         }
 
-        return connections === maxConnections;
+        return point.connections >= maxConnections;
       });
+
+      paper.view.draw();
     }
 
     function getRand(min, max) {

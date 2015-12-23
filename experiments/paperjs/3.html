@@ -3,6 +3,8 @@
   <style>
     body{
       background: #141414;
+      color: #fff;
+      font-family: sans-serif;
     }
 
     #galaxy{
@@ -15,6 +17,25 @@
 </head>
 <body>
   <canvas id="galaxy"></canvas>
+
+  <form id="form">
+    <label>
+      Max nodes per square
+      <input type="number" id="maxNodes" value="5" />
+    </label>
+
+    <label>
+      Connection radius
+      <input type="number" id="connectionRadius" value="100" />
+    </label>
+
+    <label>
+      Grid size
+      <input type="number" id="gridSize" value="150" />
+    </label>
+
+    <button id="redrawButton">Redraw</button>
+  </form>
 
   <script type="text/javascript" src="js/paper-full.js"></script>
   <script type="text/javascript" src="js/lodash.js"></script>
@@ -82,7 +103,8 @@
     function createPoints(minX, maxX, minY, maxY){
       // Plot the dots
       var n = 0;
-      var totalNodes = getRand(2, 5);
+      var maxNodes = document.querySelector('#maxNodes').value;
+      var totalNodes = getRand(2, maxNodes);
       while(n <= totalNodes){
         var x = getRand(minX, maxX);
         var y = getRand(minY, maxY);
@@ -119,7 +141,7 @@
     function connectPoint(point, points){
       var connections = 0;
       var maxConnections = 3;
-      var connectionRadius = 100;
+      var connectionRadius = document.querySelector('#connectionRadius').value;
 
       points.some(function(otherPoint){
         var dx = Math.abs((otherPoint.x - point.x) / connectionRadius);
@@ -142,7 +164,7 @@
     }
 
     function calcGrid(height, width) {
-      var size = 150;
+      var size = document.querySelector('#gridSize').value;
 
       return {
         rows: Math.floor(height / size),
@@ -154,7 +176,16 @@
       return Math.floor(Math.random() * (max - min)) + min;;
     }
 
+    function redraw(e){
+      e.preventDefault();
+      paper.project.clear();
+      draw();
+    };
+
     draw();
+
+    var form = document.querySelector('#form');
+    form.addEventListener('submit', redraw);
   </script>
 </body>
 </html>

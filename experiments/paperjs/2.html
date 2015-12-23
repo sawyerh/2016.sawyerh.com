@@ -7,7 +7,7 @@
 
     #galaxy{
       height: 400px;
-      width: 1000px;
+      width: 100%;
       margin: 100px auto;
       border: 2px dashed #303030;
       display: block;
@@ -24,24 +24,29 @@
       var canvasEl = document.querySelector('#galaxy');
       var canvasHeight = canvasEl.offsetHeight;
       var canvasWidth = canvasEl.offsetWidth;
+      var colors = ['#F2C923', '#17BBAD', '#1D4875', '#9A29BC', '#0221B6', '#B5A695'];
+      var totalNodes = 100;
+      var points = [];
+
       var p = paper;
       p.setup(canvasEl);
 
-      var totalNodes = 80;
-      var points = [];
-      var n = 1;
+      var linesLayer = new p.Layer();
+      var dotsLayer = new p.Layer();
+      dotsLayer.activate();
 
       // Plot the dots
+      var n = 1;
       while(n <= totalNodes){
         var x = getRand(30, canvasWidth - 30);
         var y = getRand(30, canvasHeight - 30);
         var point = new p.Point(x, y);
-        var minor = n % 7;
+        var minor = n % 5;
 
         var node = new p.Path.Circle({
             center: point,
-            radius: minor ? 3 : 4,
-            fillColor: minor ? '#5E5E5E' : 'red'
+            radius: minor ? 2 : 4,
+            fillColor: minor ? '#5E5E5E' : colors[getRand(0, colors.length)]
         });
 
         node.onClick = function(event) {
@@ -62,40 +67,36 @@
         n++;
       }
 
+      linesLayer.activate();
+
       // Connect the dotes
       while(points.length){
-        var point = points.pop();
-        var connections = 0;
-
-        points.some(function(otherPoint){
-          var dx = Math.abs((otherPoint.x - point.x) / 100);
-          var dy = Math.abs((otherPoint.y - point.y) / 100);
-
-          if(dx <= 1 && dy <= 1){
-            new p.Path({
-              segments: [point, otherPoint],
-              strokeColor: "#303030"
-            });
-
-            connections++;
-          }
-
-          return connections === 3;
-        });
+        connectPoint(points.pop(), points);
       }
 
       p.view.draw();
     }
 
-    function showIntersections(path1, path2) {
-      var intersections = path1.getIntersections(path2);
-      for (var i = 0; i < intersections.length; i++) {
-        new paper.Path.Circle({
-            center: intersections[i].point,
-            radius: 5,
-            fillColor: '#009dec'
-        });
-      }
+    function connectPoint(point, points){
+      var connections = 0;
+      var maxConnections = getRand(1, 3);
+      var connectionRadius = 150;
+
+      points.some(function(otherPoint){
+        var dx = Math.abs((otherPoint.x - point.x) / connectionRadius);
+        var dy = Math.abs((otherPoint.y - point.y) / connectionRadius);
+
+        if(dx <= 1 && dy <= 1){
+          connections++;
+
+          new paper.Path({
+            segments: [point, otherPoint],
+            strokeColor: "#212121"
+          });
+        }
+
+        return connections === maxConnections;
+      });
     }
 
     function getRand(min, max) {

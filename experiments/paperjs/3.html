@@ -7,6 +7,13 @@
       font-family: sans-serif;
     }
 
+    input{
+      font-weight: bold;
+      font-size: 16px;
+      padding: 10px;
+      width: 90px;
+    }
+
     #galaxy{
       height: 500px;
       width: 100%;
@@ -43,15 +50,13 @@
     var canvasEl = document.querySelector('#galaxy');
     var canvasHeight = canvasEl.offsetHeight;
     var canvasWidth = canvasEl.offsetWidth;
+    var canvasPadding = 10;
     var colors = ['#F2C923', '#17BBAD', '#1D4875', '#9A29BC', '#0221B6', '#B5A695'];
     var points = [];
+    paper.setup(canvasEl);
 
     function draw(){
       var grid = calcGrid(canvasHeight, canvasWidth);
-      console.log(grid);
-      paper.setup(canvasEl);
-      // _debugGrid(grid);
-
       var linesLayer = new paper.Layer();
       var dotsLayer = new paper.Layer();
       dotsLayer.activate();
@@ -61,16 +66,17 @@
 
       for (var column = 1; column <= grid.columns; column++) {
         for (var row = 1; row <= grid.rows; row++) {
-          var minX = column === 1 ? 5 : columnWidth * (column - 1);
-          var maxX = column === grid.columns.length ? (grid.columns * columnWidth - 5) : columnWidth * column;
-          var minY = row === 1 ? 5 : rowHeight * (row - 1);
-          var maxY = column === grid.rows.length ? (grid.rows * rowHeight - 5) : rowHeight * row;
+          var minX = column === 1 ? canvasPadding : columnWidth * (column - 1);
+          var maxX = column === grid.columns ? (canvasWidth - canvasPadding) : columnWidth * column;
+          var minY = row === 1 ? canvasPadding : rowHeight * (row - 1);
+          var maxY = row === grid.rows ? (canvasHeight - canvasPadding) : rowHeight * row;
           createPoints(minX, maxX, minY, maxY);
         }
       }
 
       linesLayer.activate();
 
+      _debugGrid(grid);
       paper.view.draw();
 
       // Connect the dotes
@@ -93,9 +99,8 @@
           var start = new paper.Point(columnWidth * (column - 1), rowHeight * (row - 1));
           var end = new paper.Point(columnWidth * column, rowHeight * row);
           var rect = new paper.Path.Rectangle(start, end);
-          rect.fillColor = "blue";
-          rect.strokeColor = "cyan";
-          rect.opacity = 0.2;
+          rect.strokeColor = "blue";
+          rect.opacity = 0.1;
         }
       }
     }

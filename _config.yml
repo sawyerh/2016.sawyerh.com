@@ -1,0 +1,11 @@
+title: Sawyer Hollenshead
+url: http://sawyerh.com
+timezone: America/New_York
+exclude:
+- Copywriting.md
+- README.md
+- tmp
+- ".gitignore"
+- node_modules
+- bower_components
+- package.json

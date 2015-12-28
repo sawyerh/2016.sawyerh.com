@@ -1,6 +1,8 @@
 ---
 title: CreativeMornings
 date: 2015-12-28 13:50:00 -05:00
+external_link: http://creativemornings.com
+dates: 2013–Present
 notes:
 - body: The center piece of CreativeMornings are the morning breakfast lectures which
     happen in every city on a Friday of every month. Each talk is recorded and uploaded

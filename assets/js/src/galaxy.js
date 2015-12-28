@@ -1,3 +1,4 @@
+"use strict";
 var paper = require('paper');
 
 var Galaxy = function(canvasEl, colors){
@@ -8,7 +9,7 @@ var Galaxy = function(canvasEl, colors){
   this.colors = colors;
   this.points = [];
   paper.setup(canvasEl);
-}
+};
 
 Galaxy.prototype.draw = function(){
   var grid = this.calcGrid(this.canvasHeight, this.canvasWidth);
@@ -41,7 +42,7 @@ Galaxy.prototype.draw = function(){
       window.clearInterval(timer);
     }
   }, 5);
-}
+};
 
 Galaxy.prototype._debugGrid = function(grid){
   var rowHeight = this.canvasHeight / grid.rows;
@@ -56,7 +57,7 @@ Galaxy.prototype._debugGrid = function(grid){
       rect.opacity = 0.1;
     }
   }
-}
+};
 
 Galaxy.prototype.createPoints = function(minX, maxX, minY, maxY){
   // Plot the dots
@@ -71,18 +72,17 @@ Galaxy.prototype.createPoints = function(minX, maxX, minY, maxY){
 
     var minor = this.points.length % 5;
 
-    var node = new paper.Path.Circle({
-        center: point,
-        radius: minor ? this.getRand(1, 2.5) : this.getRand(3, 5),
-        fillColor: minor ? '#5E5E5E' : this.colors[this.getRand(0, this.colors.length)]
+    new paper.Path.Circle({
+      center: point,
+      radius: minor ? this.getRand(1, 2.5) : this.getRand(3, 5),
+      fillColor: minor ? '#5E5E5E' : this.colors[this.getRand(0, this.colors.length)]
     });
     this.points.push(point);
     n++;
   }
-}
+};
 
 Galaxy.prototype.connectPoint = function(point, points){
-  var connections = 0;
   var maxConnections = 3;
   var connectionRadius = 100;
 
@@ -104,7 +104,7 @@ Galaxy.prototype.connectPoint = function(point, points){
   });
 
   paper.view.draw();
-}
+};
 
 Galaxy.prototype.calcGrid = function(height, width) {
   var size = 150;
@@ -112,12 +112,12 @@ Galaxy.prototype.calcGrid = function(height, width) {
   return {
     rows: Math.floor(height / size),
     columns: Math.floor(width / size)
-  }
-}
+  };
+};
 
 Galaxy.prototype.getRand = function(min, max) {
-  return Math.floor(Math.random() * (max - min)) + min;;
-}
+  return Math.floor(Math.random() * (max - min)) + min;
+};
 
 Galaxy.prototype.redraw = function(e){
   e.preventDefault();

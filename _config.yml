@@ -28,3 +28,4 @@ exclude:
 - bower_components/
 - package.json
 - webpack.config.js
+footer_content: "Content managed with [Siteleaf](http://siteleaf.com). Site hosted on [AWS](http://aws.amazon.com). Europa typeface hosted by [Typekit](http://typekit.com). Icon font by [Symbolset](http://symbolset.com). Designed in [Sketch](https://www.sketchapp.com/). Written in [Sublime Text 3](http://www.sublimetext.com/). Built in [NYC](https://media.giphy.com/media/7mUhYZhzb8AM/giphy.gif)."

@@ -10,8 +10,7 @@ layout: default
 
     <div class="intro__body">
       <div class="intro__body__text">
-        <h1 class="heading is-close ss-up">
-          Sawyer Hollenshead
+        <h1 class="heading is-close ss-up">Sawyer Hollenshead
           <a href="http://twitter.com/sawyerh" class="ss-icon social-icon--twitter">twitter</a>
           <a href="https://open.spotify.com/user/1247662653" class="ss-icon social-icon--spotify">spotify</a>
         </h1>
@@ -33,30 +32,36 @@ layout: default
   {% assign projects = site.projects | sort: 'date' | reverse %}
   {% for project in projects %}
     <article class="project">
-      <div class="project__info wrap wrap--bordered">
-        <header class="project__header">
-          <h2 class="project__title heading is-close ss-right">{{ project.title }}</h2>
-          <dl class="project__meta">
-            <dt>Link</dt>
-            <dd>{{ project.external_link }}</dd>
-            <dt>Dates</dt>
-            <dd>{{ project.dates }}</dd>
-          </dl>
-        </header>
+      <div class="project__inner wrap wrap--bordered">
+        <div class="project__info">
+          <header class="project__header">
+            <h2 class="project__title heading is-close ss-right">{{ project.title }}</h2>
+            <dl class="project__meta">
+              <dt>Link</dt>
+              <dd><a href="{{ project.external_link }}">{{ project.external_link | replace: 'http://', ''}}</a></dd>
+              <dt>Dates</dt>
+              <dd>{{ project.dates }}</dd>
+            </dl>
+          </header>
 
-        <div class="project__body">
-          {{ project.content }}
+          <div class="project__body">
+            {{ project.content }}
 
-          {% if project.notes %}
-            <div class="project__notes is-hidden">
-              {% for note in project.notes %}
-                {{ note.body | markdownify }}
-              {% endfor %}
-            </div>
-
-            <button class="project__notes-toggle">See more notes on this project</button>
-          {% endif %}
+            {% if project.notes %}
+              <button class="project__notes-toggle" data-original="See more notes on this project">See more notes on this project</button>
+            {% endif %}
+          </div>
         </div>
+
+        {% if project.notes %}
+          <div class="project__notes is-hidden">
+            {% for note in project.notes %}
+              <div class="project__note">
+                {{ note.body | markdownify }}
+              </div>
+            {% endfor %}
+          </div>
+        {% endif %}
       </div>
     </article>
   {% endfor %}

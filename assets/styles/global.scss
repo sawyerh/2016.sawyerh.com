@@ -52,6 +52,7 @@ button{
 }
 
 .wrap{
+  width: 95%;
   max-width: $w_wrap;
   margin: auto;
 }
@@ -67,6 +68,7 @@ button{
 .heading{
   font-size: em($font_size_heading);
   margin: 0 auto 30px;
+  line-height: 1.2;
 }
 
 .subheading{
@@ -83,13 +85,18 @@ button{
     font-size: em($font_size_heading_icon, $font_size_heading);
   }
 
+  &:before{
+    display: none;
+  }
+
   @include min-width($bp_inline_floating_icons){
     &:before{
-      @include transform("translate3d(-100%, -50%, 0)");
+      @include transform("translate3d(-100%, 0, 0)");
       position: absolute;
       left: 0;
-      top: 50%;
+      top: 7px;
       padding-right: 15px;
+      display: inline-block;
     }
   }
 
@@ -218,6 +225,21 @@ button{
 .project__meta{
   font-size: em($font_size_small);
   color: $text_dark;
+  margin: 0 0 $gutter;
+  padding: 0;
+
+  a{
+    color: $text_dark;
+  }
+
+  dt{
+    display: none;
+  }
+
+  dd{
+    margin: 0 0 3px;
+    padding: 0;
+  }
 }
 
 .project__notes-toggle{
@@ -230,4 +252,36 @@ button{
   &:hover{
     opacity: 0.7;
   }
+}
+
+@include min-width($bp_project_header_stacked){
+  .project__info{
+    padding-left: $w_project_sidebar;
+    position: relative;
+  }
+
+  .project__header{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: $w_project_sidebar;
+    padding-right: 10px;
+  }
+
+  .project__body{
+    max-width: $w_project_body;
+  }
+}
+
+@include min-width($bp_project_body_left_align){
+  .project__info{
+    padding-right: $w_project_sidebar;
+  }
+}
+
+.project__note{
+  border-top: 2px solid $border_color;
+  margin-top: em($gutter, $font_size_small);
+  padding-top: em($gutter, $font_size_small);
+  font-size: em($font_size_small);
 }

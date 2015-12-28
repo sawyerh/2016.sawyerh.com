@@ -44,23 +44,39 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
 	var Galaxy = __webpack_require__(1);
 	var galaxies = document.querySelectorAll('.galaxy');
+	var notesToggles = document.querySelectorAll('.project__notes-toggle');
+
+	var toggleNotes = function toggleNotes(evt) {
+	  var button = evt.target;
+	  var notes = button.parentElement.parentElement.parentElement.querySelector('.project__notes');
+
+	  if (notes) {
+	    notes.classList.toggle('is-hidden');
+	    button.classList.toggle('is-hidden');
+	    // button.innerHTML = notes.classList.contains('is-hidden') ? button.getAttribute('data-original') : 'Hide additional notes';
+	  }
+	};
 
 	for (var i = galaxies.length - 1; i >= 0; i--) {
 	  var canvas = galaxies[i];
 	  var colors = canvas.getAttribute('data-colors');
-	  var galaxy = new Galaxy(canvas, JSON.parse(unescape(colors)));
+	  var galaxy = new Galaxy(canvas, JSON.parse(decodeURIComponent(colors)));
 	  galaxy.draw();
+	}
+
+	for (var i = notesToggles.length - 1; i >= 0; i--) {
+	  notesToggles[i].addEventListener('click', toggleNotes, false);
 	}
 
 /***/ },
 /* 1 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
 	var paper = __webpack_require__(2);
 
@@ -137,7 +153,7 @@
 
 	    var minor = this.points.length % 5;
 
-	    var node = new paper.Path.Circle({
+	    new paper.Path.Circle({
 	      center: point,
 	      radius: minor ? this.getRand(1, 2.5) : this.getRand(3, 5),
 	      fillColor: minor ? '#5E5E5E' : this.colors[this.getRand(0, this.colors.length)]
@@ -148,7 +164,6 @@
 	};
 
 	Galaxy.prototype.connectPoint = function (point, points) {
-	  var connections = 0;
 	  var maxConnections = 3;
 	  var connectionRadius = 100;
 
@@ -182,7 +197,7 @@
 	};
 
 	Galaxy.prototype.getRand = function (min, max) {
-	  return Math.floor(Math.random() * (max - min)) + min;;
+	  return Math.floor(Math.random() * (max - min)) + min;
 	};
 
 	Galaxy.prototype.redraw = function (e) {

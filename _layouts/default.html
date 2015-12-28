@@ -30,7 +30,7 @@
 
   <footer class="primary-footer">
     <div class="wrap">
-      <p>Content managed with Siteleaf. Site hosted on AWS. Europa typeface hosted by Typekit. Designed in Sketch. Written in Sublime Text 3. Built at Union Sq., New York, NY</p>
+      {{ site.footer_content | markdownify }}
     </div>
   </footer>
 </body>

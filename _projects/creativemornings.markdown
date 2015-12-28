@@ -1,5 +1,5 @@
 ---
-title: CreativeMornings
+title: Creative Mornings
 date: 2015-12-28 13:50:00 -05:00
 external_link: http://creativemornings.com
 dates: 2013–Present

@@ -9,3 +9,11 @@ collections:
   uploads:
     title: Uploads
     output: true
+exclude:
+- Copywriting.md
+- README.md
+- tmp
+- ".gitignore"
+- node_modules
+- bower_components
+- package.json

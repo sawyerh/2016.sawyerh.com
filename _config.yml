@@ -18,3 +18,14 @@ exclude:
 - bower_components/
 - package.json
 - webpack.config.js
+defaults:
+  -
+    scope:
+      path: "projects"
+    values:
+      image: ''
+      video: ''
+      external_link: ''
+      dates: ''
+      subtitle: ''
+      role: ''

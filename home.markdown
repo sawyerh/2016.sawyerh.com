@@ -2,7 +2,7 @@
 title: Home
 date: 2015-12-28 13:47:00 -05:00
 permalink: index
-image: /uploads/colorful.jpg
+image: "/uploads/colorful.jpg"
 colors:
 - "#F2C923"
 - "#17BBAD"

@@ -1,0 +1,21 @@
+---
+layout: default
+---
+
+<section class="intro has-galaxy">
+  <canvas class="galaxy galaxy--full" data-colors="{{ page.colors | jsonify | uri_escape }}"></canvas>
+
+  <div class="wrap is-above-galaxy">
+    <div class="intro__body">
+      <h1 class="heading">
+        Sawyer Hollenshead
+        <a href="http://twitter.com/sawyerh" class="ss-icon social-icon--twitter">twitter</a>
+        <a href="https://open.spotify.com/user/1247662653" class="ss-icon social-icon--spotify">spotify</a>
+      </h1>
+
+      {{ content }}
+    </div>
+  </div>
+</section>
+
+<script src="/assets/js/dist/main.js"></script>

@@ -2,20 +2,64 @@
 layout: default
 ---
 
-<section class="intro has-galaxy">
+<section class="intro galaxy__wrap">
   <canvas class="galaxy galaxy--full" data-colors="{{ page.colors | jsonify | uri_escape }}"></canvas>
 
-  <div class="wrap is-above-galaxy">
-    <div class="intro__body">
-      <h1 class="heading">
-        Sawyer Hollenshead
-        <a href="http://twitter.com/sawyerh" class="ss-icon social-icon--twitter">twitter</a>
-        <a href="https://open.spotify.com/user/1247662653" class="ss-icon social-icon--spotify">spotify</a>
-      </h1>
+  <div class="wrap wrap--bordered is-above-galaxy">
+    <img src="{{ page.image }}" alt="Avatar" class="intro__avatar" />
 
-      {{ content }}
+    <div class="intro__body">
+      <div class="intro__body__text">
+        <h1 class="heading is-close ss-up">
+          Sawyer Hollenshead
+          <a href="http://twitter.com/sawyerh" class="ss-icon social-icon--twitter">twitter</a>
+          <a href="https://open.spotify.com/user/1247662653" class="ss-icon social-icon--spotify">spotify</a>
+        </h1>
+
+        {{ content }}
+      </div>
+
+      <nav class="external-nav">
+        <a href="https://medium.com/@sawyerh" class="ss-redirect external-nav__link" target="_blank">Writing</a>
+        <a href="http://highlights.sawyerh.com" class="ss-redirect external-nav__link" target="_blank">Reading</a>
+      </nav>
     </div>
   </div>
+</section>
+
+<section class="projects">
+  <h1 class="heading ss-down wrap">Selected works from 2007&ndash;{{ site.time | date: "%Y" }}</h1>
+
+  {% assign projects = site.projects | sort: 'date' | reverse %}
+  {% for project in projects %}
+    <article class="project">
+      <div class="project__info wrap wrap--bordered">
+        <header class="project__header">
+          <h2 class="project__title heading is-close ss-right">{{ project.title }}</h2>
+          <dl class="project__meta">
+            <dt>Link</dt>
+            <dd>{{ project.external_link }}</dd>
+            <dt>Dates</dt>
+            <dd>{{ project.dates }}</dd>
+          </dl>
+        </header>
+
+        <div class="project__body">
+          {{ project.content }}
+
+          {% if project.notes %}
+            <div class="project__notes is-hidden">
+              {% for note in project.notes %}
+                {{ note.body | markdownify }}
+              {% endfor %}
+            </div>
+
+            <button class="project__notes-toggle">See more notes on this project</button>
+          {% endif %}
+        </div>
+      </div>
+    </article>
+  {% endfor %}
 </section>
 
 <script src="/assets/js/dist/main.js"></script>

@@ -4,11 +4,17 @@ $border_color: #444;
 
 // TYPE
 // ========================================================
+$sans_serif: "europa", "Helvetica Neue", sans-serif;
+
 $text_default: #CBCBCB;
 $text_white: #fff;
+$text_dark: #A2A2A2;
 
 $font_size_body: 20px;
+$font_size_body_downsized: 18px;
+
 $font_size_small: 16px;
+$font_size_large: 23px;
 
 $font_size_heading: 32px;
 $font_size_heading_icon: 24px;
@@ -22,7 +28,10 @@ $gutter: 45px;
 
 // Breakpoints
 // ========================================================
-$bp_small_screen: 600px;
+$bp_font_size_body_downsized: 620px;
+
+$bp_inline_floating_icons: 1190px;
+$bp_external_nav_stacked: 890px;
 
 // Z-Index
 // ========================================================

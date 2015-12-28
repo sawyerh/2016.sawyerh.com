@@ -13,17 +13,26 @@ body{
   -webkit-font-smoothing: antialiased;
   background: $bg_default;
   color: $text_default;
-  font-family: "europa", "Helvetica Neue", sans-serif;
+  font-family: $sans_serif;
   font-size: $font_size_body;
   margin: 0;
+
+  @include max-width($bp_font_size_body_downsized){
+    font-size: $font_size_body_downsized;
+  }
 }
 
 a{
   color: $text_white;
+
+  &:hover{
+    opacity: 0.7;
+  }
 }
 
 p{
   margin: 0 0 1.5em;
+  line-height: 1.4;
 
   &:last-child{
     margin-bottom: 0;
@@ -38,29 +47,73 @@ button{
   cursor: pointer;
 }
 
+.is-hidden{
+  display: none !important;
+}
+
 .wrap{
   max-width: $w_wrap;
   margin: auto;
 }
 
+.wrap--bordered{
+  border-bottom: 2px solid $border_color;
+  padding-bottom: em($gutter * 2);
+  margin-bottom: em($gutter * 2);
+}
+
 // TYPE
 // ========================================================
+.heading{
+  font-size: em($font_size_heading);
+  margin: 0 auto 30px;
+}
+
+.subheading{
+  font-size: em($font_size_subheading);
+}
+
 .heading, .subheading{
   color: $text_white;
   font-weight: normal;
+  position: relative;
+  z-index: $z_above_galaxy;
 
   &:before, .ss-icon{
     font-size: em($font_size_heading_icon, $font_size_heading);
   }
+
+  @include min-width($bp_inline_floating_icons){
+    &:before{
+      @include transform("translate3d(-100%, -50%, 0)");
+      position: absolute;
+      left: 0;
+      top: 50%;
+      padding-right: 15px;
+    }
+  }
+
+  .ss-icon:first-of-type{
+    margin-left: 10px;
+  }
+
+  &.is-close{
+    margin-bottom: 5px;
+  }
 }
 
-.heading{
-  font-size: $font_size_heading;
-  margin: 0 0 30px;
-}
 
-.subheading{
-  font-size: $font_size_subheading;
+// FOOTER
+// ========================================================
+.primary-footer{
+  font-size: em($font_size_small);
+  color: $text_dark;
+  padding-bottom: $gutter;
+
+  p{
+    max-width: 640px;
+    line-height: 1.5;
+  }
 }
 
 // GALAXY
@@ -75,8 +128,14 @@ button{
   z-index: $z_galaxy;
 }
 
+.galaxy__wrap{
+  max-width: 95%;
+  margin: auto;
+}
+
 .galaxy--full{
   height: 100%;
+  bottom: 0;
 }
 
 .is-above-galaxy{
@@ -88,6 +147,87 @@ button{
 // ========================================================
 .intro{
   position: relative;
-  padding: $gutter 0 ($gutter * 2);
-  margin-top: em(100px, $font_size_body);
+  padding: em(100px) 0 0;
+  margin-top: -20px;
+
+  .galaxy{
+    bottom: 15px;
+  }
+}
+
+.intro__avatar{
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  margin-bottom: 15px;
+  vertical-align: bottom;
+}
+
+.intro__body{
+  text-shadow: 0 0 5px $bg_default;
+  position: relative;
+  z-index: $z_above_galaxy;
+}
+
+.intro__body__text{
+  max-width: 650px;
+
+  p{
+    font-size: em($font_size_large);
+  }
+}
+
+.social-icon--twitter{
+  color: #50ABF1;
+}
+
+.social-icon--spotify{
+  color: #1ED761;
+}
+
+.external-nav{
+  margin-top: 1em;
+}
+
+.external-nav__link{
+  text-decoration: none;
+  margin-right: 15px;
+  font-size: em($font_size_large);
+
+  &:before{
+    font-size: em($font_size_heading_icon, $font_size_heading);
+    margin-right: em(15px, $font_size_heading);
+  }
+}
+
+@include min-width($bp_external_nav_stacked){
+  .external-nav{
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
+  .external-nav__link{
+    display: block;
+    font-size: em($font_size_heading);
+  }
+}
+
+// PROJECTS
+// ========================================================
+.project__meta{
+  font-size: em($font_size_small);
+  color: $text_dark;
+}
+
+.project__notes-toggle{
+  border-bottom: 2px solid $text_white;
+  color: $text_white;
+  font-weight: bold;
+  font-size: em($font_size_body);
+  font-family: $sans_serif;
+
+  &:hover{
+    opacity: 0.7;
+  }
 }

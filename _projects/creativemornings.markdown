@@ -3,17 +3,17 @@ title: Creative Mornings
 date: 2015-12-28 13:50:00 -05:00
 external_link: http://creativemornings.com
 dates: 2013–Present
-video: "/uploads/creativemornings-walkthrough.mp4"
+video: "/uploads/Screeny Video Dec 29, 2015, 3.54.37 PM.mp4"
+image: "/uploads/creativemornings.png"
 colors:
 - "#F00"
 - "#00B2D9"
 - "#F7941E"
 - "#73B84D"
 notes:
-- body: The center piece of CreativeMornings are the morning breakfast lectures which
-    happen in every city on a Friday of every month. Each talk is recorded and uploaded
-    to the site afterwards.
-- body: CreativeMornings is a joyful, creative community, so throughout the site we
+- title: Injecting moments of delight
+  video: "/uploads/Screeny Video Dec 29, 2015, 4.03.22 PM.mp4"
+  body: CreativeMornings is a joyful, creative community, so throughout the site we
     wanted to be sure to inject moments of delight for the user. We introduced fun
     things like a “hinged” dropdown menu that falls off the site when you log in and
     raining hearts when you liked a video.

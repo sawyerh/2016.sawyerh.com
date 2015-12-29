@@ -6,3 +6,5 @@ bower_components
 .sass-cache
 assets/fonts
 .jekyll-metadata
+*.mp4
+*.mov

@@ -37,7 +37,7 @@ layout: default
           <canvas class="galaxy" data-colors="{{ project.colors | jsonify | uri_escape }}"></canvas>
 
           <div class="wrap is-above-galaxy">
-            <video class="project__media" controls autoplay src="{{ project.video }}">
+            <video class="project__media" controls autoplay src="{{ project.video }}" poster="{{ project.image }}">
           </div>
         </div>
       {% endif %}
@@ -67,7 +67,16 @@ layout: default
           <div class="project__notes is-hidden">
             {% for note in project.notes %}
               <div class="project__note">
-                {{ note.body | markdownify }}
+                {% if note.video %}
+                  <div class="project__note__media__wrap">
+                    <video class="project__note__media" controls src="{{ note.video }}" poster="{{ note.image }}">
+                  </div>
+                {% endif %}
+
+                <div class="project__note__body">
+                  <h2 class="project__note__title subheading">{{ note.title }}</h2>
+                  {{ note.body | markdownify }}
+                </div>
               </div>
             {% endfor %}
           </div>

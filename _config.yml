@@ -17,8 +17,6 @@ defaults:
     video: ''
     external_link: ''
     dates: ''
-    subtitle: ''
-    role: ''
 exclude:
 - Copywriting.md
 - README.md

@@ -29,6 +29,8 @@ $gutter: 45px;
 $w_project_body: 610px;
 $w_project_sidebar: ($w_wrap - $w_project_body) / 2;
 
+$w_project_note_body: 400px;
+
 // Breakpoints
 // ========================================================
 $bp_font_size_body_downsized: 620px;
@@ -38,6 +40,8 @@ $bp_external_nav_stacked: 890px;
 
 $bp_project_header_stacked: 770px;
 $bp_project_body_left_align: 995px;
+
+$bp_project_note_stacked: 1165px;
 
 // Z-Index
 // ========================================================

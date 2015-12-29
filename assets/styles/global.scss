@@ -47,6 +47,10 @@ button{
   cursor: pointer;
 }
 
+img, video{
+  max-width: 100%;
+}
+
 .is-hidden{
   display: none !important;
 }
@@ -67,17 +71,18 @@ button{
 // ========================================================
 .heading{
   font-size: em($font_size_heading);
+  font-weight: normal;
   margin: 0 auto 30px;
   line-height: 1.2;
 }
 
 .subheading{
   font-size: em($font_size_subheading);
+  font-weight: bold;
 }
 
 .heading, .subheading{
   color: $text_white;
-  font-weight: normal;
   position: relative;
   z-index: $z_above_galaxy;
 
@@ -292,8 +297,33 @@ button{
 }
 
 .project__note{
-  border-top: 2px solid $border_color;
-  margin-top: em($gutter, $font_size_small);
-  padding-top: em($gutter, $font_size_small);
+  @include clearfix;
+  padding-top: em($gutter);
   font-size: em($font_size_small);
+}
+
+.project__note__title{
+  font-size: em($font_size_subheading, $font_size_small);
+}
+
+.project__note__body{
+  max-width: $w_project_note_body;
+  margin: auto;
+}
+
+.project__note__media__wrap{
+  max-width: $w_wrap - $w_project_note_body;
+  margin: 0 auto 20px;
+}
+
+@include min-width($bp_project_note_stacked){
+  .project__note__body{
+    float: left;
+  }
+
+  .project__note__media__wrap{
+    float: right;
+    padding-left: 30px;
+    margin-bottom: 0;
+  }
 }

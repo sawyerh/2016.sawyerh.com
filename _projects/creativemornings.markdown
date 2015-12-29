@@ -3,8 +3,12 @@ title: Creative Mornings
 date: 2015-12-28 13:50:00 -05:00
 external_link: http://creativemornings.com
 dates: 2013–Present
-video: /uploads/creativemornings-walkthrough.mp4
-colors: ["#F00", "#00B2D9", "#F7941E", "#73B84D"]
+video: "/uploads/creativemornings-walkthrough.mp4"
+colors:
+- "#F00"
+- "#00B2D9"
+- "#F7941E"
+- "#73B84D"
 notes:
 - body: The center piece of CreativeMornings are the morning breakfast lectures which
     happen in every city on a Friday of every month. Each talk is recorded and uploaded

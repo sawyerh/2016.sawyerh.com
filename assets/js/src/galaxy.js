@@ -1,5 +1,5 @@
 "use strict";
-var paper = require('paper');
+window.paper = require('paper');
 
 var Galaxy = function(canvasEl, colors){
   this.canvasEl = canvasEl;
@@ -9,6 +9,7 @@ var Galaxy = function(canvasEl, colors){
   this.colors = colors;
   this.points = [];
   paper.setup(canvasEl);
+  paper.activate();
 };
 
 Galaxy.prototype.draw = function(){
@@ -31,17 +32,12 @@ Galaxy.prototype.draw = function(){
   }
 
   linesLayer.activate();
-  paper.view.draw();
 
   // Connect the dotes
-  var timer = window.setInterval(() => {
-    if(this.points.length){
-      var point = this.points.pop();
-      this.connectPoint(point, this.points);
-    } else {
-      window.clearInterval(timer);
-    }
-  }, 5);
+  while(this.points.length){
+    var point = this.points.pop();
+    this.connectPoint(point, this.points);
+  }
 };
 
 Galaxy.prototype._debugGrid = function(grid){

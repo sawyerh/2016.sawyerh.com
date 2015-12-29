@@ -78,7 +78,7 @@
 
 	"use strict";
 
-	var paper = __webpack_require__(2);
+        window.paper = __webpack_require__(2);
 
 	var Galaxy = function Galaxy(canvasEl, colors) {
 	  this.canvasEl = canvasEl;
@@ -88,11 +88,10 @@
 	  this.colors = colors;
 	  this.points = [];
 	  paper.setup(canvasEl);
+          paper.activate();
 	};
 
 	Galaxy.prototype.draw = function () {
-	  var _this = this;
-
 	  var grid = this.calcGrid(this.canvasHeight, this.canvasWidth);
 	  var linesLayer = new paper.Layer();
 	  var dotsLayer = new paper.Layer();
@@ -112,17 +111,12 @@
 	  }
 
 	  linesLayer.activate();
-	  paper.view.draw();
 
 	  // Connect the dotes
-	  var timer = window.setInterval(function () {
-	    if (_this.points.length) {
-	      var point = _this.points.pop();
-	      _this.connectPoint(point, _this.points);
-	    } else {
-	      window.clearInterval(timer);
-	    }
-	  }, 5);
+          while (this.points.length) {
+            var point = this.points.pop();
+            this.connectPoint(point, this.points);
+          }
 	};
 
 	Galaxy.prototype._debugGrid = function (grid) {

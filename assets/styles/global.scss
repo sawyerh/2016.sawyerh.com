@@ -127,6 +127,7 @@ button{
 // ========================================================
 .galaxy{
   height: 500px;
+  max-height: 100%;
   width: 100%;
   display: block;
   position: absolute;
@@ -138,6 +139,7 @@ button{
 .galaxy__wrap{
   max-width: 95%;
   margin: auto;
+  position: relative;
 }
 
 .galaxy--full{
@@ -222,6 +224,16 @@ button{
 
 // PROJECTS
 // ========================================================
+.project__media{
+  width: 100%;
+  margin-bottom: $gutter;
+  border-radius: 3px;
+}
+
+.project__media__wrap .galaxy{
+  bottom: $gutter * -1;
+}
+
 .project__meta{
   font-size: em($font_size_small);
   color: $text_dark;

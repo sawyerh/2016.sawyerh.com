@@ -33,7 +33,22 @@ Additional Siteleaf screens: (slider?)
 
 ## CreativeMornings
 
-[browse talks page > watch talk > go to cities page]
+1. Homepage (logged out)
+2. Scroll to theme thumbnail and click.
+3. Log in from header
+4. Toggle to videos and click Baltimore's video
+5. Let video play for 3 scenes, then scroll below fold.
+6. Like the video and let it rain hearts.
+7. [CUT, FADE IN] Cities page
+8. Hover over map icons 
+9. Sort cities by rainbow
+10. Click on Berlin
+11. Click on upcoming event
+12. Search for "Eisenberg"
+13. Click on Tina
+14. Follow Tina
+15. Scroll down profile and filter activity by Quotes
+16. Scroll back up and click Logo
 
 CreativeMornings is a breakfast lecture series for the creative community, founded by Tina Roth Eisenberg. In 2012, after a successful Kickstarter campaign, they approached Oak Studios to help design and build their online presence. As part of the team, I lead the design and front-end development of the initial CreativeMornings.com which included over 350 hours of video, 11 languages, and an administrative section for hosts to manage event registration and content. Over time, through our ongoing relationship with CreativeMornings, I’ve moved onto leading the front-end and Rails development, supporting a site that has grown to over 100k users, over 2k videos, and a presence in over 130 creative cities.
 

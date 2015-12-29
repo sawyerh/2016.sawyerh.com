@@ -37,7 +37,7 @@ layout: default
           <canvas class="galaxy" data-colors="{{ project.colors | jsonify | uri_escape }}"></canvas>
 
           <div class="wrap is-above-galaxy">
-            <video class="project__media" controls autoplay src="{{ project.video }}" poster="{{ project.image }}">
+            <video class="project__media" controls src="{{ project.video }}">
           </div>
         </div>
       {% endif %}

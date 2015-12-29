@@ -17,6 +17,7 @@
     "tests"
   ],
   "dependencies": {
-    "paper": "~0.9.25"
+    "paper": "~0.9.25",
+    "waypoints": "~4.0.0"
   }
 }

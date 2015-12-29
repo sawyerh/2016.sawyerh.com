@@ -1,10 +1,12 @@
 "use strict";
 
-var Galaxy = require('galaxy');
-var galaxies = document.querySelectorAll('.galaxy');
-var notesToggles = document.querySelectorAll('.project__notes-toggle');
+var Galaxy = require('galaxy'),
+    Video = require('video'),
+    galaxies = document.querySelectorAll('.galaxy'),
+    notesToggles = document.querySelectorAll('.project__notes-toggle'),
+    videos = document.querySelectorAll('video.project__media');
 
-var toggleNotes = function(evt){
+function toggleNotes(evt){
   var button = evt.target;
   var notes = button.parentElement.parentElement.parentElement.querySelector('.project__notes');
 
@@ -13,7 +15,7 @@ var toggleNotes = function(evt){
     button.classList.toggle('is-hidden');
     // button.innerHTML = notes.classList.contains('is-hidden') ? button.getAttribute('data-original') : 'Hide additional notes';
   }
-};
+}
 
 for (var i = galaxies.length - 1; i >= 0; i--) {
   var canvas = galaxies[i];
@@ -24,4 +26,8 @@ for (var i = galaxies.length - 1; i >= 0; i--) {
 
 for (var i = notesToggles.length - 1; i >= 0; i--) {
   notesToggles[i].addEventListener('click', toggleNotes, false);
+}
+
+for (var i = videos.length - 1; i >= 0; i--) {
+  new Video(videos[i]);
 }

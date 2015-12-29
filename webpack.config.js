@@ -33,6 +33,8 @@ var config = {
            path.join(__dirname, "assets/js/src")],
     alias: {
       'paper': 'paper/dist/paper-core.min.js',
+      'waypoints_inview': 'waypoints/lib/shortcuts/inview.min.js',
+      'waypoints_noframework': 'waypoints/lib/noframework.waypoints.min.js',
     }
   }
 };

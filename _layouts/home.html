@@ -32,15 +32,17 @@ layout: default
   {% assign projects = site.projects | sort: 'date' | reverse %}
   {% for project in projects %}
     <article class="project">
-      {% if project.video and project.video != '' %}
-        <div class="galaxy__wrap project__media__wrap">
-          <canvas class="galaxy" data-colors="{{ project.colors | jsonify | uri_escape }}"></canvas>
+      <div class="galaxy__wrap project__media__wrap">
+        <canvas class="galaxy" data-colors="{{ project.colors | jsonify | uri_escape }}"></canvas>
 
-          <div class="wrap is-above-galaxy">
+        <div class="wrap is-above-galaxy">
+          {% if project.video != '' %}
             <video class="project__media" controls src="{{ project.video }}">
-          </div>
+          {% elsif project.image != '' %}
+            <img class="project__media" src="{{ project.image }}" alt="{{ project.title }}" />
+          {% endif %}
         </div>
-      {% endif %}
+      </div>
 
       <div class="project__inner wrap wrap--bordered">
         <div class="project__info">

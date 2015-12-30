@@ -299,7 +299,17 @@
         __webpack_require__(4);
 
         function Video(video) {
+          var _this = this;
+
           this.video = video;
+          var events = {
+            ended: this.handleEnded,
+            play: this.handlePlay,
+            playing: this.handlePlaying,
+            seeked: this.handleSeeked,
+            seeking: this.handleLoading,
+            stalled: this.handleStalled
+          };
 
           new Waypoint.Inview({
             element: this.video,
@@ -307,10 +317,9 @@
             exited: this.handleExited.bind(this)
           });
 
-          this.video.addEventListener('play', this.handlePlay.bind(this), false);
-          this.video.addEventListener('seeking', this.handleLoading.bind(this), false);
-          this.video.addEventListener('seeked', this.handleSeeked.bind(this), false);
-          this.video.addEventListener('ended', this.handleEnded.bind(this), false);
+          Object.getOwnPropertyNames(events).forEach(function (eventName) {
+            _this.video.addEventListener(eventName, events[eventName].bind(_this), false);
+          });
         }
 
         Video.prototype.handleEntered = function () {
@@ -325,6 +334,10 @@
 
         Video.prototype.handlePlay = function () {
           console.log("handlePlay: ", this.video);
+        };
+
+        Video.prototype.handlePlaying = function () {
+          console.log("handlePlaying: ", this.video);
           this.video.parentElement.classList.add('is-playing');
         };
 
@@ -334,6 +347,10 @@
 
         Video.prototype.handleSeeked = function () {
           console.log("handleSeeked: ", this.video);
+        };
+
+        Video.prototype.handleStalled = function () {
+          console.log("handleStalled: ", this.video);
         };
 
         Video.prototype.handleEnded = function () {

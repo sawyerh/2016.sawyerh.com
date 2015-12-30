@@ -1,7 +1,6 @@
 ---
 title: Creative Mornings
 date: 2015-12-28 13:50:00 -05:00
-published: false
 image: "/uploads/creativemornings.png"
 video: "/uploads/Screeny Video Dec 29, 2015, 3.54.37 PM.mp4"
 external_link: http://creativemornings.com

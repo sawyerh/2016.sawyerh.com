@@ -4,6 +4,14 @@ require('script!waypoints_inview');
 
 function Video(video){
   this.video = video;
+  var events = {
+    ended: this.handleEnded,
+    play: this.handlePlay,
+    playing: this.handlePlaying,
+    seeked: this.handleSeeked,
+    seeking: this.handleLoading,
+    stalled: this.handleStalled
+  };
 
   new Waypoint.Inview({
     element: this.video,
@@ -11,10 +19,9 @@ function Video(video){
     exited: this.handleExited.bind(this)
   });
 
-  this.video.addEventListener('play', this.handlePlay.bind(this), false);
-  this.video.addEventListener('seeking', this.handleLoading.bind(this), false);
-  this.video.addEventListener('seeked', this.handleSeeked.bind(this), false);
-  this.video.addEventListener('ended', this.handleEnded.bind(this), false);
+  Object.getOwnPropertyNames(events).forEach((eventName) => {
+    this.video.addEventListener(eventName, events[eventName].bind(this), false);
+  });
 }
 
 Video.prototype.handleEntered = function(){
@@ -29,6 +36,10 @@ Video.prototype.handleExited = function(){
 
 Video.prototype.handlePlay = function(){
   console.log("handlePlay: ", this.video);
+};
+
+Video.prototype.handlePlaying = function(){
+  console.log("handlePlaying: ", this.video);
   this.video.parentElement.classList.add('is-playing');
 };
 
@@ -38,6 +49,10 @@ Video.prototype.handleLoading = function(){
 
 Video.prototype.handleSeeked = function(){
   console.log("handleSeeked: ", this.video);
+};
+
+Video.prototype.handleStalled = function(){
+  console.log("handleStalled: ", this.video);
 };
 
 Video.prototype.handleEnded = function(){

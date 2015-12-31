@@ -5,5 +5,6 @@ external_link: http://stories.hollenshead.co
 dates: 2013
 section: additional
 subtitle: Recorded stories told by my grandparents
+image: "/uploads/family-stories.jpg"
 ---
 

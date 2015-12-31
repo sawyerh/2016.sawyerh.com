@@ -120,11 +120,17 @@ img, video{
 .primary-footer{
   font-size: em($font_size_small);
   color: $text_dark;
-  padding-bottom: $gutter;
+  padding: em($gutter) 0;
+  margin-top: em($gutter * 2);
+  border-top: 1px dotted $border_color;
 
   p{
     max-width: 640px;
     line-height: 1.5;
+  }
+
+  a{
+    color: $text_dark;
   }
 }
 
@@ -231,8 +237,12 @@ img, video{
 // ========================================================
 .project__media{
   width: 100%;
-  margin-bottom: $gutter;
+  margin-bottom: em($gutter);
   border-radius: 3px;
+
+  @include max-width($bp_project_header_stacked){
+    margin-bottom: 10px;
+  }
 }
 
 .project__media__wrap .galaxy{
@@ -242,7 +252,7 @@ img, video{
 .project__meta{
   font-size: em($font_size_small);
   color: $text_dark;
-  margin: 0 0 $gutter;
+  margin: 0 0 em($gutter);
   padding: 0;
 
   a{
@@ -326,4 +336,86 @@ img, video{
     padding-left: 30px;
     margin-bottom: 0;
   }
+}
+
+// Additional projects
+// ========================================================
+.ad-projects{
+  @include clearfix;
+  margin-bottom: em($gutter);
+  padding-bottom: em($gutter * 0.5);
+}
+
+.ad-project{
+  margin: 0 auto 4%;
+  font-size: em($font_size_small);
+  text-align: center;
+
+  @include min-width($bp_ad_project_stacked){
+    width: 48%;
+    float: left;
+
+    &:nth-of-type(2n){
+      margin-left: 2%;
+    }
+  }
+}
+
+.ad-project__image__wrap{
+  position: relative;
+  margin-bottom: 10px;
+  text-decoration: none;
+  display: block;
+
+  &:hover .ad-project__image{
+    opacity: 0.5;
+  }
+}
+
+.ad-project__image{
+  opacity: 0.3;
+  vertical-align: bottom;
+}
+
+.ad-project__title{
+  @include transform("translateY(-50%)");
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  font-weight: 300;
+  font-size: em($font_size_heading, $font_size_small);
+  text-shadow: 0 1px 3px rgba(#000, 0.5);
+  margin: 0;
+}
+
+.ad-project__subtitle{
+  font-size: em($font_size_small, $font_size_small);
+  margin: 0 0 3px;
+
+  @include min-width($bp_ad_project_stacked){
+    @include ellipsis;
+  }
+}
+
+.ad-project__meta{
+  color: $text_dark;
+}
+
+// Archived projects
+// ========================================================
+.archived-projects{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.archived-project{
+  margin: 0 0 8px;
+  font-size: em($font_size_small);
+}
+
+.archived-project__year{
+  display: inline-block;
+  margin-right: 5px;
+  min-width: 40px;
 }

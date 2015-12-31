@@ -6,5 +6,6 @@ dates: 2014
 section: additional
 subtitle: Stories of ex-convicts who changed their hustle
 role: Developer
+image: "/uploads/judged.jpg"
 ---
 

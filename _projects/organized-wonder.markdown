@@ -6,5 +6,6 @@ dates: 2012–2015
 subtitle: Share and discover inspiring, informative videos
 role: Founder
 section: additional
+image: "/uploads/organizedwonder.jpg"
 ---
 

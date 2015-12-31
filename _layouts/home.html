@@ -31,61 +31,99 @@ layout: default
 
   {% assign projects = site.projects | sort: 'date' | reverse %}
   {% for project in projects %}
-    <article class="project">
-      <div class="galaxy__wrap project__media__wrap">
-        <canvas class="galaxy" data-colors="{{ project.colors | jsonify | uri_escape }}"></canvas>
+    {% unless project.section == 'additional' or project.section == 'archive' %}
+      <article class="project">
+        <div class="galaxy__wrap project__media__wrap">
+          <canvas class="galaxy" data-colors="{{ project.colors | jsonify | uri_escape }}"></canvas>
 
-        <div class="wrap is-above-galaxy">
-          {% if project.video != '' %}
-            <video class="project__media" controls src="{{ project.video }}">
-          {% elsif project.image != '' %}
-            <img class="project__media" src="{{ project.image }}" alt="{{ project.title }}" />
-          {% endif %}
-        </div>
-      </div>
-
-      <div class="project__inner wrap wrap--bordered">
-        <div class="project__info">
-          <header class="project__header">
-            <h2 class="project__title heading is-close ss-right">{{ project.title }}</h2>
-            <dl class="project__meta">
-              <dt>Link</dt>
-              <dd><a href="{{ project.external_link }}">{{ project.external_link | replace: 'http://', ''}}</a></dd>
-              <dt>Dates</dt>
-              <dd>{{ project.dates }}</dd>
-            </dl>
-          </header>
-
-          <div class="project__body">
-            {{ project.content }}
-
-            {% if project.notes %}
-              <button class="project__notes-toggle" data-original="See more notes on this project">See more notes on this project</button>
+          <div class="wrap is-above-galaxy">
+            {% if project.video != '' %}
+              <video class="project__media" controls src="{{ project.video }}">
+            {% elsif project.image != '' %}
+              <img class="project__media" src="{{ project.image }}" alt="{{ project.title }}" />
             {% endif %}
           </div>
         </div>
 
-        {% if project.notes %}
-          <div class="project__notes is-hidden">
-            {% for note in project.notes %}
-              <div class="project__note">
-                {% if note.video %}
-                  <div class="project__note__media__wrap">
-                    <video class="project__note__media" controls src="{{ note.video }}" poster="{{ note.image }}">
-                  </div>
-                {% endif %}
+        <div class="project__inner wrap wrap--bordered">
+          <div class="project__info">
+            <header class="project__header">
+              <h2 class="project__title heading is-close ss-right">{{ project.title }}</h2>
+              <dl class="project__meta">
+                <dt>Link</dt>
+                <dd><a href="{{ project.external_link }}">{{ project.external_link | replace: 'http://', ''}}</a></dd>
+                <dt>Dates</dt>
+                <dd>{{ project.dates }}</dd>
+              </dl>
+            </header>
 
-                <div class="project__note__body">
-                  <h2 class="project__note__title subheading">{{ note.title }}</h2>
-                  {{ note.body | markdownify }}
-                </div>
-              </div>
-            {% endfor %}
+            <div class="project__body">
+              {{ project.content }}
+
+              {% if project.notes %}
+                <button class="project__notes-toggle" data-original="See more notes on this project">See more notes on this project</button>
+              {% endif %}
+            </div>
           </div>
+
+          {% if project.notes %}
+            <div class="project__notes is-hidden">
+              {% for note in project.notes %}
+                <div class="project__note">
+                  {% if note.video %}
+                    <div class="project__note__media__wrap">
+                      <video class="project__note__media" controls src="{{ note.video }}" poster="{{ note.image }}">
+                    </div>
+                  {% endif %}
+
+                  <div class="project__note__body">
+                    <h2 class="project__note__title subheading">{{ note.title }}</h2>
+                    {{ note.body | markdownify }}
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+          {% endif %}
+        </div>
+      </article>
+    {% endunless %}
+  {% endfor %}
+</section>
+
+<section class="ad-projects wrap wrap--bordered">
+  <h1 class="heading ss-down">Additional projects I'm proud of</h1>
+
+  {% assign additional_projects = site.projects | sort: 'date' | where: 'section', 'additional' | reverse %}
+  {% for project in additional_projects %}
+    <article class="ad-project">
+      <a href="{{ project.external_link }}" class="ad-project__image__wrap">
+        <img class="ad-project__image" src="{{ project.image }}" alt="{{ project.title }}" />
+        <h2 class="ad-project__title">{{ project.title }}</h2>
+      </a>
+
+      <h3 class="ad-project__subtitle">{{ project.subtitle }}</h3>
+      <div class="ad-project__meta">
+        {{ project.dates }}
+        {% if project.role and project.role != '' %}
+            &bull; Role: {{ project.role }}
         {% endif %}
       </div>
     </article>
   {% endfor %}
+</section>
+
+<section class="wrap">
+  <h1 class="subheading">Archived projects</h1>
+
+  {% assign archived_projects = site.projects | sort: 'date' | where: 'section', 'archive' | reverse %}
+  <ol class="archived-projects">
+    {% for project in archived_projects %}
+      <li class="archived-project">
+        <span class="archived-project__year">{{ project.dates }}</span>
+        <a href="{{ project.external_link }}">{{ project.title }}</a>
+      </li>
+    {% endfor %}
+  </ol>
 </section>
 
 <script src="/assets/js/dist/main.js"></script>

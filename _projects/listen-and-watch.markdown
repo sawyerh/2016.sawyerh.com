@@ -6,5 +6,6 @@ dates: 2013–Present
 subtitle: Music videos uninterrupted
 role: Founder
 section: additional
+image: "/uploads/listen-watch.jpg"
 ---
 

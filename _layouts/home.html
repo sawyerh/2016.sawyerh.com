@@ -115,7 +115,7 @@ layout: default
 <section class="wrap">
   <h1 class="subheading">Archived projects</h1>
 
-  {% assign archived_projects = site.projects | sort: 'date' | where: 'section', 'archive' | reverse %}
+  {% assign archived_projects = site.projects | where: 'section', 'archive' | sort: 'dates' | reverse %}
   <ol class="archived-projects">
     {% for project in archived_projects %}
       <li class="archived-project">

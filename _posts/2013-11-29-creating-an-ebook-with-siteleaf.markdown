@@ -1,9 +1,9 @@
 ---
 title: Creating an ebook with Siteleaf
-date: 2013-11-29 18:48:00 Z
-syntax_highlighting: 'true'
+date: 2013-11-29 13:48:00 -05:00
 tags:
 - siteleaf
+syntax_highlighting: 'true'
 ---
 
 ![siteleaf-ebook-cms](/uploads/siteleaf-ebook-cms.png)

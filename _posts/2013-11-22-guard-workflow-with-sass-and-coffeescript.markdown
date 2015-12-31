@@ -1,9 +1,9 @@
 ---
 title: My Sass and CoffeeScript workflow with Guard
-date: 2013-11-22 18:30:00 Z
-syntax_highlighting: 'true'
+date: 2013-11-22 13:30:00 -05:00
 tags:
 - front-end
+syntax_highlighting: 'true'
 ---
 
 **Update (September 21, 2015)**: *I've moved on to Webpack! For my updated workflow, check out [github.com/sawyerh/asset-workflow](https://github.com/sawyerh/asset-workflow)*

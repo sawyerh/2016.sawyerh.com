@@ -1,8 +1,8 @@
 ---
 title: Ideas I'll Never Do / Ideas For You.
-date: 2014-05-21 20:36:00 Z
+date: 2014-05-21 16:36:00 -04:00
 published: false
-syntax_highlighting:
+syntax_highlighting: 
 ---
 
 A constantly updated list of ideas for products/projects I find interesting, but will probably never do due to lack of time, interest, ability, or they're just totally unrealistic. So have it:

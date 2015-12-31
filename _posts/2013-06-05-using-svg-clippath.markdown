@@ -1,6 +1,6 @@
 ---
 title: Using SVG clipPath
-date: 2013-06-05 20:11:00 Z
+date: 2013-06-05 16:11:00 -04:00
 tags:
 - svg
 - front-end

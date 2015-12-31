@@ -1,6 +1,6 @@
 ---
 title: The toolbox
-date: 2013-06-26 11:37:00 Z
+date: 2013-06-26 07:37:00 -04:00
 ---
 
 These are things I use on a daily basis. *Last updated on November 1, 2013*

@@ -1,12 +1,12 @@
 ---
 title: Using jQuery UI Sortable with React components
-date: 2015-10-28 19:36:00 Z
-syntax_highlighting: 'true'
+date: 2015-10-28 15:36:00 -04:00
 tags:
 - front-end
 - react
 - javascript
 - jquery-ui
+syntax_highlighting: 'true'
 ---
 
 While working on a new feature for [Siteleaf](http://www.siteleaf.com), I came across the need to have a React component that had a list of sortable, drag & drop children. There are some React-specfic libraries that add this capability already, however I wasn't really satisfied with their implementations. We already use jQuery UI throughout Siteleaf, so rather than including another library that did a similar job, I opted to use [jQuery UI's Sortable Widget](http://api.jqueryui.com/sortable).

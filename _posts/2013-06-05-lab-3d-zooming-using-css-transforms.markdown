@@ -1,6 +1,6 @@
 ---
 title: Lab - 3D Zooming Using CSS Transforms
-date: 2013-06-05 19:50:00 Z
+date: 2013-06-05 15:50:00 -04:00
 tags:
 - css
 - front-end

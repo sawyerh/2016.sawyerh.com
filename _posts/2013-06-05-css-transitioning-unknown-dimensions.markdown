@@ -1,6 +1,6 @@
 ---
 title: CSS Transitioning Unknown Dimensions
-date: 2013-06-05 20:17:00 Z
+date: 2013-06-05 16:17:00 -04:00
 tags:
 - css
 - front-end

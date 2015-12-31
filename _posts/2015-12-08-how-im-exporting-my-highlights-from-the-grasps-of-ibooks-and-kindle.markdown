@@ -1,11 +1,11 @@
 ---
 title: How I’m exporting my highlights from the grasps of iBooks and Kindle
-date: 2015-12-08 13:47:00 Z
-syntax_highlighting:
+date: 2015-12-08 08:47:00 -05:00
 tags:
 - aws
 - siteleaf
 - ebooks
+syntax_highlighting: 
 ---
 
 _Crossposted from [Medium](https://medium.com/@sawyerh/how-i-m-exporting-my-highlights-from-the-grasps-of-ibooks-and-kindle-ce6a6031b298)_

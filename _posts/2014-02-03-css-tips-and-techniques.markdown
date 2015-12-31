@@ -1,10 +1,10 @@
 ---
 title: CSS Tips and Techniques
-date: 2014-02-03 19:51:00 Z
-syntax_highlighting: 'true'
+date: 2014-02-03 14:51:00 -05:00
 tags:
 - css
 - front-end
+syntax_highlighting: 'true'
 ---
 
 ## Utilize :before and :after

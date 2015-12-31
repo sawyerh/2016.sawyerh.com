@@ -1,6 +1,6 @@
 ---
 title: Generating Black and White Images With SVG
-date: 2013-06-05 19:58:00 Z
+date: 2013-06-05 15:58:00 -04:00
 tags:
 - svg
 - front-end

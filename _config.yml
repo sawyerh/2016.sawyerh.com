@@ -2,8 +2,6 @@
 title: Sawyer Hollenshead
 url: http://sawyerh.com
 timezone: America/New_York
-permalink: "/writing/:title"
-markdown: redcarpet
 collections:
   projects:
     title: Projects
@@ -12,20 +10,20 @@ collections:
     title: Uploads
     output: true
 defaults:
--
-  scope:
-    path: ""
-    type: "posts"
+- scope:
+    path: ''
+    type: posts
   values:
-    layout: "post"
--
-  scope:
+    layout: post
+- scope:
     path: projects
   values:
     image: ''
     video: ''
     external_link: ''
     dates: ''
+permalink: "/writing/:title"
+markdown: redcarpet
 exclude:
 - Copywriting.md
 - README.md

@@ -148,7 +148,8 @@ img, video{
 }
 
 .galaxy__wrap{
-  max-width: 95%;
+  width: 95%;
+  max-width: $w_wrap + 500;
   margin: auto;
   position: relative;
 }

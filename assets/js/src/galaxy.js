@@ -1,18 +1,22 @@
 "use strict";
-window.paper = require('paper');
+var paper = require('paper');
 
 var Galaxy = function(canvasEl, colors){
   this.canvasEl = canvasEl;
-  this.canvasHeight = canvasEl.offsetHeight;
-  this.canvasWidth = canvasEl.offsetWidth;
+  this.getCanvasSize();
   this.canvasPadding = 10;
   this.colors = colors;
-  this.points = [];
-  paper.setup(canvasEl);
-  paper.activate();
+  this.project = new paper.Project(this.canvasEl);
+  this.project.activate();
 };
 
+Galaxy.prototype.getCanvasSize = function(){
+  this.canvasHeight = this.canvasEl.offsetHeight;
+  this.canvasWidth = this.canvasEl.offsetWidth;
+}
+
 Galaxy.prototype.draw = function(){
+  this.points = [];
   var grid = this.calcGrid(this.canvasHeight, this.canvasWidth);
   var linesLayer = new paper.Layer();
   var dotsLayer = new paper.Layer();
@@ -115,9 +119,11 @@ Galaxy.prototype.getRand = function(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 };
 
-Galaxy.prototype.redraw = function(e){
-  e.preventDefault();
-  paper.project.clear();
+Galaxy.prototype.redraw = function(){
+  this.getCanvasSize();
+  this.project.activate();
+  this.project.clear();
+  this.project.view.viewSize = new paper.Size(this.canvasWidth, this.canvasHeight);
   this.draw();
 };
 

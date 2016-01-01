@@ -34,7 +34,9 @@ layout: default
     {% unless project.section == 'additional' or project.section == 'archive' %}
       <article class="project">
         <div class="galaxy__wrap project__media__wrap">
-          <canvas class="galaxy" data-colors="{{ project.colors | jsonify | uri_escape }}"></canvas>
+          {% if project.colors and project.colors != '' %}
+            <canvas class="galaxy" data-colors="{{ project.colors | jsonify | uri_escape }}"></canvas>
+          {% endif %}
 
           <div class="wrap is-above-galaxy">
             {% if project.video != '' %}

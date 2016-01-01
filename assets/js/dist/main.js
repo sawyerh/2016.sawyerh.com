@@ -52,7 +52,7 @@
 	    galaxies = document.querySelectorAll('.galaxy'),
 	    galaxyInstances = [],
 	    notesToggles = document.querySelectorAll('.project__notes-toggle'),
-	    videos = document.querySelectorAll('video.project__media');
+	    videos = document.querySelectorAll('.project__media video');
 
 	function toggleNotes(evt) {
 	  var button = evt.target;

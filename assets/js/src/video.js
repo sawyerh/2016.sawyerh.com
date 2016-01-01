@@ -4,6 +4,9 @@ require('script!waypoints_inview');
 
 function Video(video){
   this.video = video;
+  this.sourceSet = false;
+  this.sources = video.querySelectorAll('source');
+
   var events = {
     ended: this.handleEnded,
     play: this.handlePlay,
@@ -26,6 +29,9 @@ function Video(video){
 
 Video.prototype.handleEntered = function(){
   console.log("handleEntered: ", this.video);
+  if(!this.sourceSet)
+    this.setSource();
+
   this.video.play();
 };
 
@@ -59,5 +65,14 @@ Video.prototype.handleEnded = function(){
   this.video.currentTime = 0;
   this.video.play();
 };
+
+Video.prototype.setSource = function(){
+  for (var i = this.sources.length - 1; i >= 0; i--) {
+    this.sources[i].setAttribute('src', this.sources[i].getAttribute('data-src'));
+    this.video.load();
+  }
+
+  this.sourceSet = true;
+}
 
 module.exports = Video;

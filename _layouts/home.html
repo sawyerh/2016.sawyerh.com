@@ -38,7 +38,9 @@ layout: default
 
           <div class="wrap is-above-galaxy">
             {% if project.video != '' %}
-              <video class="project__media" controls src="{{ project.video }}">
+              <video class="project__media" controls>
+                <source data-src="{{ project.video }}" type="video/mp4">
+              </video>
             {% elsif project.image != '' %}
               <img class="project__media" src="{{ project.image }}" alt="{{ project.title }}" />
             {% endif %}
@@ -72,7 +74,9 @@ layout: default
                 <div class="project__note">
                   {% if note.video %}
                     <div class="project__note__media__wrap">
-                      <video class="project__note__media" controls src="{{ note.video }}" poster="{{ note.image }}">
+                      <video class="project__note__media" controls poster="{{ note.image }}">
+                        <source src="{{ project.video }}" type="video/mp4">
+                      </video>
                     </div>
                   {% endif %}
 

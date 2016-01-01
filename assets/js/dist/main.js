@@ -46,8 +46,8 @@
 
 	"use strict";
 
-        var debounce = __webpack_require__(1),
-            Galaxy = __webpack_require__(3),
+	var debounce = __webpack_require__(1),
+	    Galaxy = __webpack_require__(3),
 	    Video = __webpack_require__(5),
 	    galaxies = document.querySelectorAll('.galaxy'),
 	    galaxyInstances = [],
@@ -93,70 +93,70 @@
 /* 1 */
 /***/ function(module, exports, __webpack_require__) {
 
+	
+	/**
+	 * Module dependencies.
+	 */
 
-        /**
-         * Module dependencies.
-         */
+	var now = __webpack_require__(2);
 
-        var now = __webpack_require__(2);
+	/**
+	 * Returns a function, that, as long as it continues to be invoked, will not
+	 * be triggered. The function will be called after it stops being called for
+	 * N milliseconds. If `immediate` is passed, trigger the function on the
+	 * leading edge, instead of the trailing.
+	 *
+	 * @source underscore.js
+	 * @see http://unscriptable.com/2009/03/20/debouncing-javascript-methods/
+	 * @param {Function} function to wrap
+	 * @param {Number} timeout in ms (`100`)
+	 * @param {Boolean} whether to execute at the beginning (`false`)
+	 * @api public
+	 */
 
-        /**
-         * Returns a function, that, as long as it continues to be invoked, will not
-         * be triggered. The function will be called after it stops being called for
-         * N milliseconds. If `immediate` is passed, trigger the function on the
-         * leading edge, instead of the trailing.
-         *
-         * @source underscore.js
-         * @see http://unscriptable.com/2009/03/20/debouncing-javascript-methods/
-         * @param {Function} function to wrap
-         * @param {Number} timeout in ms (`100`)
-         * @param {Boolean} whether to execute at the beginning (`false`)
-         * @api public
-         */
+	module.exports = function debounce(func, wait, immediate){
+	  var timeout, args, context, timestamp, result;
+	  if (null == wait) wait = 100;
 
-        module.exports = function debounce(func, wait, immediate){
-          var timeout, args, context, timestamp, result;
-          if (null == wait) wait = 100;
+	  function later() {
+	    var last = now() - timestamp;
 
-          function later() {
-            var last = now() - timestamp;
+	    if (last < wait && last > 0) {
+	      timeout = setTimeout(later, wait - last);
+	    } else {
+	      timeout = null;
+	      if (!immediate) {
+	        result = func.apply(context, args);
+	        if (!timeout) context = args = null;
+	      }
+	    }
+	  };
 
-            if (last < wait && last > 0) {
-              timeout = setTimeout(later, wait - last);
-            } else {
-              timeout = null;
-              if (!immediate) {
-                result = func.apply(context, args);
-                if (!timeout) context = args = null;
-              }
-            }
-          };
+	  return function debounced() {
+	    context = this;
+	    args = arguments;
+	    timestamp = now();
+	    var callNow = immediate && !timeout;
+	    if (!timeout) timeout = setTimeout(later, wait);
+	    if (callNow) {
+	      result = func.apply(context, args);
+	      context = args = null;
+	    }
 
-          return function debounced() {
-            context = this;
-            args = arguments;
-            timestamp = now();
-            var callNow = immediate && !timeout;
-            if (!timeout) timeout = setTimeout(later, wait);
-            if (callNow) {
-              result = func.apply(context, args);
-              context = args = null;
-            }
-
-            return result;
-          };
-        };
+	    return result;
+	  };
+	};
 
 
 /***/ },
 /* 2 */
 /***/ function(module, exports) {
 
-        module.exports = Date.now || now
+	module.exports = Date.now || now
 
-        function now() {
-            return new Date().getTime()
-        }
+	function now() {
+	    return new Date().getTime()
+	}
 
 
 /***/ },
@@ -350,6 +350,9 @@
 	  var _this = this;
 
 	  this.video = video;
+	  this.sourceSet = false;
+	  this.sources = video.querySelectorAll('source');
+
 	  var events = {
 	    ended: this.handleEnded,
 	    play: this.handlePlay,
@@ -372,6 +375,8 @@
 
 	Video.prototype.handleEntered = function () {
 	  console.log("handleEntered: ", this.video);
+	  if (!this.sourceSet) this.setSource();
+
 	  this.video.play();
 	};
 
@@ -404,6 +409,15 @@
 	Video.prototype.handleEnded = function () {
 	  this.video.currentTime = 0;
 	  this.video.play();
+	};
+
+	Video.prototype.setSource = function () {
+	  for (var i = this.sources.length - 1; i >= 0; i--) {
+	    this.sources[i].setAttribute('src', this.sources[i].getAttribute('data-src'));
+	    this.video.load();
+	  }
+
+	  this.sourceSet = true;
 	};
 
 	module.exports = Video;

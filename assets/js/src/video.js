@@ -2,7 +2,13 @@
 require('script!waypoints_noframework'); // included like a <script>
 require('script!waypoints_inview');
 
-function Video(wrap){
+function Video(wrap, options){
+  if(!options){
+    options = {
+      waypoints: true
+    };
+  }
+
   this.wrap = wrap;
   this.manuallyPaused = false;
   this.sourceSet = false;
@@ -26,11 +32,13 @@ function Video(wrap){
     stalled: this.handleStalled
   };
 
-  new Waypoint.Inview({
-    element: this.video,
-    entered: this.handleEntered.bind(this),
-    exited: this.handleExited.bind(this)
-  });
+  if(options.waypoints){
+    new Waypoint.Inview({
+      element: this.video,
+      entered: this.handleEntered.bind(this),
+      exited: this.handleExited.bind(this)
+    });
+  }
 
   Object.getOwnPropertyNames(events).forEach((eventName) => {
     this.video.addEventListener(eventName, events[eventName].bind(this), false);
@@ -45,13 +53,11 @@ function Video(wrap){
 
 Video.prototype.handleEntered = function(){
   console.log("handleEntered: ", this.video);
-  if(!this.sourceSet)
-    this.setSource();
 
   if(this.manuallyPaused)
     return;
 
-  this.video.play();
+  this.play();
 };
 
 Video.prototype.handleExited = function(){
@@ -141,6 +147,13 @@ Video.prototype.handleEnded = function(){
   this.setTime(0);
   this.video.play();
 };
+
+Video.prototype.play = function(){
+  if(!this.sourceSet)
+    this.setSource();
+
+  this.video.play();
+}
 
 Video.prototype.setSource = function(){
   for (var i = this.sources.length - 1; i >= 0; i--) {

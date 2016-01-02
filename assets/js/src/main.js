@@ -15,7 +15,12 @@ function toggleNotes(evt){
   if(notes){
     notes.classList.toggle('is-hidden');
     button.classList.toggle('is-hidden');
-    // button.innerHTML = notes.classList.contains('is-hidden') ? button.getAttribute('data-original') : 'Hide additional notes';
+    var videos = notes.querySelectorAll('.project__note__media.video__wrap');
+
+    for (var i = videos.length - 1; i >= 0; i--) {
+      var video = new Video(videos[i]);
+      video.play();
+    }
   }
 }
 

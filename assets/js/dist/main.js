@@ -61,7 +61,12 @@
 	  if (notes) {
 	    notes.classList.toggle('is-hidden');
 	    button.classList.toggle('is-hidden');
-	    // button.innerHTML = notes.classList.contains('is-hidden') ? button.getAttribute('data-original') : 'Hide additional notes';
+	    var videos = notes.querySelectorAll('.project__note__media.video__wrap');
+
+	    for (var i = videos.length - 1; i >= 0; i--) {
+	      var video = new Video(videos[i]);
+	      video.play();
+	    }
 	  }
 	}
 
@@ -349,8 +354,14 @@
 	__webpack_require__(6); // included like a <script>
 	__webpack_require__(9);
 
-	function Video(wrap) {
+	function Video(wrap, options) {
 	  var _this = this;
+
+	  if (!options) {
+	    options = {
+	      waypoints: true
+	    };
+	  }
 
 	  this.wrap = wrap;
 	  this.manuallyPaused = false;
@@ -375,11 +386,13 @@
 	    stalled: this.handleStalled
 	  };
 
-	  new Waypoint.Inview({
-	    element: this.video,
-	    entered: this.handleEntered.bind(this),
-	    exited: this.handleExited.bind(this)
-	  });
+	  if (options.waypoints) {
+	    new Waypoint.Inview({
+	      element: this.video,
+	      entered: this.handleEntered.bind(this),
+	      exited: this.handleExited.bind(this)
+	    });
+	  }
 
 	  Object.getOwnPropertyNames(events).forEach(function (eventName) {
 	    _this.video.addEventListener(eventName, events[eventName].bind(_this), false);
@@ -394,11 +407,10 @@
 
 	Video.prototype.handleEntered = function () {
 	  console.log("handleEntered: ", this.video);
-	  if (!this.sourceSet) this.setSource();
 
 	  if (this.manuallyPaused) return;
 
-	  this.video.play();
+	  this.play();
 	};
 
 	Video.prototype.handleExited = function () {
@@ -487,6 +499,12 @@
 
 	Video.prototype.handleEnded = function () {
 	  this.setTime(0);
+	  this.video.play();
+	};
+
+	Video.prototype.play = function () {
+	  if (!this.sourceSet) this.setSource();
+
 	  this.video.play();
 	};
 

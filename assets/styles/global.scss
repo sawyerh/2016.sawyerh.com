@@ -181,6 +181,11 @@ img, video{
   z-index: 2;
 }
 
+.project__note .video__play--overlay{
+  width: 90px;
+  height: 90px;
+}
+
 .video__play{
   background: url("/assets/images/play.svg") center center no-repeat;
   background-size: contain;
@@ -448,12 +453,14 @@ img, video{
 @include min-width($bp_project_note_stacked){
   .project__note__body{
     float: left;
+    width: perc($w_project_note_body);
   }
 
   .project__note__media__wrap{
     float: right;
     padding-left: 30px;
     margin-bottom: 0;
+    width: 100% - perc($w_project_note_body);
   }
 }
 

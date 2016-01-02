@@ -188,7 +188,7 @@ img, video{
   outline: none;
 
   &:hover{
-    opacity: 0.75;
+    opacity: 0.9;
   }
 }
 
@@ -244,6 +244,29 @@ img, video{
   background: $text_dark;
   border: 2px solid $bg_default;
   border-radius: 50%;
+  outline: none;
+
+  &:hover{
+    background: #fff;
+  }
+}
+
+.video__keyframe__tooltip{
+  @include transform("translateX(-50%)");
+  background: #fff;
+  font-size: em($font_size_small);
+  position: absolute;
+  top: 100%;
+  margin-left: $h_video_timeline;
+  display: none;
+  padding: 6px 10px 7px;
+  margin-top: 10px;
+  color: $bg_default;
+  border-radius: 3px;
+
+  &.is-visible{
+    display: block;
+  }
 }
 
 .is-playing{

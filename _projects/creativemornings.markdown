@@ -20,7 +20,8 @@ colors:
 - "#73B84D"
 notes:
 - title: Injecting moments of delight
-  video: "/uploads/Screeny Video Dec 29, 2015, 4.03.22 PM.mp4"
+  video:
+    mp4: "/uploads/Screeny Video Dec 29, 2015, 4.03.22 PM.mp4"
   body: CreativeMornings is a joyful, creative community, so throughout the site we
     wanted to be sure to inject moments of delight for the user. We introduced fun
     things like a “hinged” dropdown menu that falls off the site when you log in and

@@ -416,14 +416,19 @@
 	    var keyframes = JSON.parse(decodeURIComponent(this.keyframesEl.getAttribute('data-keyframes')));
 	    var frag = document.createDocumentFragment();
 
+	    this.tooltip = document.createElement('span');
+	    this.tooltip.classList.add('video__keyframe__tooltip');
+	    frag.appendChild(this.tooltip);
+
 	    Object.getOwnPropertyNames(keyframes).forEach(function (time) {
 	      var keyframe = document.createElement('button');
 	      keyframe.classList.add('video__keyframe');
 	      keyframe.innerHTML = keyframes[time];
-	      keyframe.setAttribute('title', keyframes[time]);
 	      keyframe.setAttribute('data-time', time);
 	      keyframe.style.left = time / _this2.video.duration * 100 + "%";
 	      keyframe.addEventListener('click', _this2.handleKeyframeClick.bind(_this2), false);
+	      keyframe.addEventListener('mouseenter', _this2.handleKeyframeEnter.bind(_this2), false);
+	      keyframe.addEventListener('mouseleave', _this2.handleKeyframeLeave.bind(_this2), false);
 	      frag.appendChild(keyframe);
 	    });
 
@@ -437,6 +442,16 @@
 	  this.setTime(seconds);
 	};
 
+	Video.prototype.handleKeyframeEnter = function (evt) {
+	  this.tooltip.innerHTML = evt.target.innerHTML;
+	  this.tooltip.style.left = evt.target.style.left;
+	  this.tooltip.classList.add('is-visible');
+	};
+
+	Video.prototype.handleKeyframeLeave = function (evt) {
+	  this.tooltip.classList.remove('is-visible');
+	};
+
 	Video.prototype.handlePause = function () {
 	  console.log("handlePause: ", this.video);
 	  window.clearInterval(this.progressInterval);
@@ -445,12 +460,12 @@
 
 	Video.prototype.handlePlay = function () {
 	  console.log("handlePlay: ", this.video);
+	  this.progressInterval = window.setInterval(this.updateProgress.bind(this), 150);
 	};
 
 	Video.prototype.handlePlaying = function () {
 	  console.log("handlePlaying: ", this.video);
 	  this.wrap.classList.add('is-playing');
-	  this.progressInterval = window.setInterval(this.updateProgress.bind(this), 150);
 	};
 
 	Video.prototype.handleLoading = function () {
@@ -459,7 +474,6 @@
 
 	Video.prototype.handleSeeked = function () {
 	  console.log("handleSeeked: ", this.video);
-	  window.clearInterval(this.progressInterval);
 	};
 
 	Video.prototype.handleStalled = function () {
@@ -486,7 +500,6 @@
 	};
 
 	Video.prototype.setTime = function (seconds) {
-	  window.clearInterval(this.progressInterval);
 	  this.video.currentTime = seconds;
 	};
 

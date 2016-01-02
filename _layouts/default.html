@@ -7,7 +7,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</title>
+  <title>{% if page.seo_title %}{{ page.seo_title }}{% elsif page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</title>
+  {% if page.seo_desc %}
+    <meta name="description" content="{{ page.seo_desc }}" />
+  {% endif %}
+
   <link rel="stylesheet" href="/assets/styles/global.css" />
   <link rel="SHORTCUT ICON" href="/assets/images/favicon.png" />
 

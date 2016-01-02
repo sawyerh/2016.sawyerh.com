@@ -6,7 +6,7 @@ var debounce = require('debounce'),
     galaxies = document.querySelectorAll('.galaxy'),
     galaxyInstances = [],
     notesToggles = document.querySelectorAll('.project__notes-toggle'),
-    videos = document.querySelectorAll('.project__media video');
+    videos = document.querySelectorAll('.project__media.video__wrap');
 
 function toggleNotes(evt){
   var button = evt.target;
@@ -25,6 +25,8 @@ function redrawGalaxies(){
   }
 }
 
+
+// console.time('galaxies');
 for (var i = 0; i < galaxies.length; i++) {
   var canvas = galaxies[i];
   var colors = canvas.getAttribute('data-colors');
@@ -32,6 +34,7 @@ for (var i = 0; i < galaxies.length; i++) {
   galaxyInstances.push(galaxy);
   galaxy.draw();
 }
+// console.timeEnd('galaxies');
 
 for (var i = notesToggles.length - 1; i >= 0; i--) {
   notesToggles[i].addEventListener('click', toggleNotes, false);

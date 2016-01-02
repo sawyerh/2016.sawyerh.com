@@ -52,7 +52,7 @@
 	    galaxies = document.querySelectorAll('.galaxy'),
 	    galaxyInstances = [],
 	    notesToggles = document.querySelectorAll('.project__notes-toggle'),
-	    videos = document.querySelectorAll('.project__media video');
+	    videos = document.querySelectorAll('.project__media.video__wrap');
 
 	function toggleNotes(evt) {
 	  var button = evt.target;
@@ -71,6 +71,7 @@
 	  }
 	}
 
+	// console.time('galaxies');
 	for (var i = 0; i < galaxies.length; i++) {
 	  var canvas = galaxies[i];
 	  var colors = canvas.getAttribute('data-colors');
@@ -78,6 +79,7 @@
 	  galaxyInstances.push(galaxy);
 	  galaxy.draw();
 	}
+	// console.timeEnd('galaxies');
 
 	for (var i = notesToggles.length - 1; i >= 0; i--) {
 	  notesToggles[i].addEventListener('click', toggleNotes, false);
@@ -182,8 +184,6 @@
 	};
 
 	Galaxy.prototype.draw = function () {
-	  console.log(this.canvasEl);
-	  console.time("draw-galaxy");
 	  this.points = [];
 	  var grid = this.calcGrid(this.canvasHeight, this.canvasWidth);
 	  var linesLayer = new paper.Layer();
@@ -193,7 +193,6 @@
 	  var rowHeight = this.canvasHeight / grid.rows;
 	  var columnWidth = this.canvasWidth / grid.columns;
 
-	  console.time("createPoints");
 	  for (var column = 1; column <= grid.columns; column++) {
 	    for (var row = 1; row <= grid.rows; row++) {
 	      var minX = column === 1 ? this.canvasPadding : columnWidth * (column - 1);
@@ -203,21 +202,15 @@
 	      this.createPoints(minX, maxX, minY, maxY);
 	    }
 	  }
-	  console.timeEnd("createPoints");
-
 	  linesLayer.activate();
 
 	  // Connect the dotes
-	  console.time("connect-points");
 	  while (this.points.length) {
 	    var point = this.points.pop();
 	    this.connectPoint(point, this.points);
 	  }
-	  console.timeEnd("connect-points");
 
 	  this.project.view.draw();
-
-	  console.timeEnd("draw-galaxy");
 	};
 
 	Galaxy.prototype._debugGrid = function (grid) {
@@ -240,6 +233,8 @@
 	  var n = 0;
 	  var maxNodes = 5;
 	  var totalNodes = this.getRand(2, maxNodes);
+	  var colorsLength = this.colors.length;
+
 	  while (n <= totalNodes) {
 	    var x = this.getRand(minX, maxX);
 	    var y = this.getRand(minY, maxY);
@@ -250,8 +245,8 @@
 
 	    new paper.Path.Circle({
 	      center: point,
-	      radius: minor ? this.getRand(1, 2.5) : this.getRand(3, 5),
-	      fillColor: minor ? '#5E5E5E' : this.colors[this.getRand(0, this.colors.length)]
+	      radius: minor ? 2 : this.getRand(3, 5),
+	      fillColor: minor ? '#5E5E5E' : this.colors[this.getRand(0, colorsLength)]
 	    });
 	    this.points.push(point);
 	    n++;
@@ -354,17 +349,26 @@
 	__webpack_require__(6); // included like a <script>
 	__webpack_require__(9);
 
-	function Video(video) {
+	function Video(wrap) {
 	  var _this = this;
 
-	  this.video = video;
+	  this.wrap = wrap;
+	  this.manuallyPaused = false;
 	  this.sourceSet = false;
-	  this.sources = video.querySelectorAll('source');
+	  this.video = wrap.querySelector('.video');
+	  this.sources = this.video.querySelectorAll('source');
+	  this.progressEl = wrap.querySelector('.video__progress');
+
+	  this.timelineEl = wrap.querySelector('.video__timeline');
+	  var playButtons = wrap.querySelectorAll('.video__play');
 
 	  var events = {
+	    click: this.togglePlay,
 	    ended: this.handleEnded,
+	    pause: this.handlePause,
 	    play: this.handlePlay,
 	    playing: this.handlePlaying,
+	    progress: this.updateProgress,
 	    seeked: this.handleSeeked,
 	    seeking: this.handleLoading,
 	    stalled: this.handleStalled
@@ -379,18 +383,35 @@
 	  Object.getOwnPropertyNames(events).forEach(function (eventName) {
 	    _this.video.addEventListener(eventName, events[eventName].bind(_this), false);
 	  });
+
+	  for (var i = playButtons.length - 1; i >= 0; i--) {
+	    playButtons[i].addEventListener('click', this.togglePlay.bind(this), false);
+	  }
+
+	  this.timelineEl.addEventListener('click', this.handleTimelineClick.bind(this), false);
 	}
 
 	Video.prototype.handleEntered = function () {
 	  console.log("handleEntered: ", this.video);
 	  if (!this.sourceSet) this.setSource();
 
+	  if (this.manuallyPaused) return;
+
 	  this.video.play();
 	};
 
 	Video.prototype.handleExited = function () {
 	  console.log("handleExited: ", this.video);
+
+	  if (this.manuallyPaused) return;
+
 	  this.video.pause();
+	};
+
+	Video.prototype.handlePause = function () {
+	  console.log("handlePause: ", this.video);
+	  window.clearInterval(this.progressInterval);
+	  this.wrap.classList.remove('is-playing');
 	};
 
 	Video.prototype.handlePlay = function () {
@@ -399,7 +420,8 @@
 
 	Video.prototype.handlePlaying = function () {
 	  console.log("handlePlaying: ", this.video);
-	  this.video.parentElement.classList.add('is-playing');
+	  this.wrap.classList.add('is-playing');
+	  this.progressInterval = window.setInterval(this.updateProgress.bind(this), 150);
 	};
 
 	Video.prototype.handleLoading = function () {
@@ -408,14 +430,20 @@
 
 	Video.prototype.handleSeeked = function () {
 	  console.log("handleSeeked: ", this.video);
+	  window.clearInterval(this.progressInterval);
 	};
 
 	Video.prototype.handleStalled = function () {
 	  console.log("handleStalled: ", this.video);
 	};
 
+	Video.prototype.handleTimelineClick = function (evt) {
+	  var duration = evt.offsetX / this.timelineEl.offsetWidth * this.video.duration;
+	  this.setTime(duration);
+	};
+
 	Video.prototype.handleEnded = function () {
-	  this.video.currentTime = 0;
+	  this.setTime(0);
 	  this.video.play();
 	};
 
@@ -426,6 +454,21 @@
 	  }
 
 	  this.sourceSet = true;
+	};
+
+	Video.prototype.setTime = function (seconds) {
+	  window.clearInterval(this.progressInterval);
+	  this.video.currentTime = seconds;
+	};
+
+	Video.prototype.togglePlay = function () {
+	  this.video.paused ? this.video.play() : this.video.pause();
+	  this.manuallyPaused = this.video.paused;
+	};
+
+	Video.prototype.updateProgress = function () {
+	  var progress = this.video.currentTime / this.video.duration * 100;
+	  this.progressEl.style.width = progress + "%";
 	};
 
 	module.exports = Video;

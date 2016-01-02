@@ -166,20 +166,45 @@ img, video{
 
 // Video
 // ========================================================
-.video__wrap{
+.video__container{
   position: relative;
   padding-top: 9/16 * 100%;
 }
 
-.video__play{
+.video__play--overlay{
   @include transform("translate3d(-50%, -50%, 0)");
   position: absolute;
   top: 50%;
   left: 50%;
-  background: url("/assets/images/play.svg") center center no-repeat;
-  background-size: contain;
   width: 150px;
   height: 150px;
+  z-index: 2;
+}
+
+.video__play{
+  background: url("/assets/images/play.svg") center center no-repeat;
+  background-size: contain;
+  text-indent: -9999px;
+  outline: none;
+
+  &:hover{
+    opacity: 0.75;
+  }
+}
+
+.video__controls{
+  padding-left: 35px;
+  min-height: 25px;
+  position: relative;
+  margin-top: 7px;
+  padding-top: 8px;
+}
+
+.video__play--control{
+  @include vertAlign;
+  left: 0;
+  width: 25px;
+  height: 25px;
 }
 
 .video{
@@ -192,8 +217,31 @@ img, video{
   height: 100%;
 }
 
+.video__timeline{
+  background: #515151;
+  border-radius: 8px;
+  height: 8px;
+  position: relative;
+  cursor: pointer;
+  transition: 250ms all ease;
+}
+
+.video__progress{
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  background: #fff;
+  border-radius: 8px;
+  pointer-events: none;
+}
+
 .is-playing{
   .video__play{
+    background-image: url("/assets/images/pause.svg");
+  }
+
+  .video__play--overlay{
     display: none;
   }
 
@@ -416,9 +464,7 @@ img, video{
 }
 
 .ad-project__title{
-  @include transform("translateY(-50%)");
-  position: absolute;
-  top: 50%;
+  @include vertAlign;
   width: 100%;
   font-weight: 300;
   font-size: em($font_size_heading, $font_size_small);

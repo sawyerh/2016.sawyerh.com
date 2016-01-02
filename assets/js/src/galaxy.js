@@ -13,11 +13,9 @@ var Galaxy = function(canvasEl, colors){
 Galaxy.prototype.getCanvasSize = function(){
   this.canvasHeight = this.canvasEl.offsetHeight;
   this.canvasWidth = this.canvasEl.offsetWidth;
-}
+};
 
 Galaxy.prototype.draw = function(){
-  console.log(this.canvasEl);
-  console.time("draw-galaxy");
   this.points = [];
   var grid = this.calcGrid(this.canvasHeight, this.canvasWidth);
   var linesLayer = new paper.Layer();
@@ -27,7 +25,6 @@ Galaxy.prototype.draw = function(){
   var rowHeight = this.canvasHeight / grid.rows;
   var columnWidth = this.canvasWidth / grid.columns;
 
-  console.time("createPoints");
   for (var column = 1; column <= grid.columns; column++) {
     for (var row = 1; row <= grid.rows; row++) {
       var minX = column === 1 ? this.canvasPadding : columnWidth * (column - 1);
@@ -37,21 +34,15 @@ Galaxy.prototype.draw = function(){
       this.createPoints(minX, maxX, minY, maxY);
     }
   }
-  console.timeEnd("createPoints");
-
   linesLayer.activate();
 
   // Connect the dotes
-  console.time("connect-points");
   while(this.points.length){
     var point = this.points.pop();
     this.connectPoint(point, this.points);
   }
-  console.timeEnd("connect-points");
 
   this.project.view.draw();
-
-  console.timeEnd("draw-galaxy");
 };
 
 Galaxy.prototype._debugGrid = function(grid){
@@ -74,6 +65,8 @@ Galaxy.prototype.createPoints = function(minX, maxX, minY, maxY){
   var n = 0;
   var maxNodes = 5;
   var totalNodes = this.getRand(2, maxNodes);
+  var colorsLength = this.colors.length;
+
   while(n <= totalNodes){
     var x = this.getRand(minX, maxX);
     var y = this.getRand(minY, maxY);
@@ -84,8 +77,8 @@ Galaxy.prototype.createPoints = function(minX, maxX, minY, maxY){
 
     new paper.Path.Circle({
       center: point,
-      radius: minor ? this.getRand(1, 2.5) : this.getRand(3, 5),
-      fillColor: minor ? '#5E5E5E' : this.colors[this.getRand(0, this.colors.length)]
+      radius: minor ? 2 : this.getRand(3, 5),
+      fillColor: minor ? '#5E5E5E' : this.colors[this.getRand(0, colorsLength)]
     });
     this.points.push(point);
     n++;

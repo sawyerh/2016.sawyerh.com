@@ -1,7 +1,16 @@
 <div class="{{ include.html_class }} video__wrap">
-  <button class="video__play">Play</button>
+  <div class="video__container">
+    <button class="video__play video__play--overlay">Play</button>
 
-  <video class="{{ include.html_class }}__video video">
-    <source data-src="{{ include.video }}" type="video/mp4">
-  </video>
+    <video class="{{ include.html_class }}__video video">
+      <source data-src="{{ include.video }}" type="video/mp4">
+    </video>
+  </div>
+
+  <div class="video__controls">
+    <button class="video__play video__play--control">Play</button>
+    <div class="video__timeline">
+      <span class="video__progress"></span>
+    </div>
+  </div>
 </div>

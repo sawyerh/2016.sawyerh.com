@@ -2,15 +2,24 @@
 require('script!waypoints_noframework'); // included like a <script>
 require('script!waypoints_inview');
 
-function Video(video){
-  this.video = video;
+function Video(wrap){
+  this.wrap = wrap;
+  this.manuallyPaused = false;
   this.sourceSet = false;
-  this.sources = video.querySelectorAll('source');
+  this.video = wrap.querySelector('.video');
+  this.sources = this.video.querySelectorAll('source');
+  this.progressEl = wrap.querySelector('.video__progress');
+
+  this.timelineEl = wrap.querySelector('.video__timeline');
+  var playButtons = wrap.querySelectorAll('.video__play');
 
   var events = {
+    click: this.togglePlay,
     ended: this.handleEnded,
+    pause: this.handlePause,
     play: this.handlePlay,
     playing: this.handlePlaying,
+    progress: this.updateProgress,
     seeked: this.handleSeeked,
     seeking: this.handleLoading,
     stalled: this.handleStalled
@@ -25,6 +34,12 @@ function Video(video){
   Object.getOwnPropertyNames(events).forEach((eventName) => {
     this.video.addEventListener(eventName, events[eventName].bind(this), false);
   });
+
+  for (var i = playButtons.length - 1; i >= 0; i--) {
+    playButtons[i].addEventListener('click', this.togglePlay.bind(this), false);
+  }
+
+  this.timelineEl.addEventListener('click', this.handleTimelineClick.bind(this), false);
 }
 
 Video.prototype.handleEntered = function(){
@@ -32,12 +47,25 @@ Video.prototype.handleEntered = function(){
   if(!this.sourceSet)
     this.setSource();
 
+  if(this.manuallyPaused)
+    return;
+
   this.video.play();
 };
 
 Video.prototype.handleExited = function(){
   console.log("handleExited: ", this.video);
+
+  if(this.manuallyPaused)
+    return;
+
   this.video.pause();
+};
+
+Video.prototype.handlePause = function(){
+  console.log("handlePause: ", this.video);
+  window.clearInterval(this.progressInterval);
+  this.wrap.classList.remove('is-playing');
 };
 
 Video.prototype.handlePlay = function(){
@@ -46,7 +74,8 @@ Video.prototype.handlePlay = function(){
 
 Video.prototype.handlePlaying = function(){
   console.log("handlePlaying: ", this.video);
-  this.video.parentElement.classList.add('is-playing');
+  this.wrap.classList.add('is-playing');
+  this.progressInterval = window.setInterval(this.updateProgress.bind(this), 150);
 };
 
 Video.prototype.handleLoading = function(){
@@ -55,14 +84,20 @@ Video.prototype.handleLoading = function(){
 
 Video.prototype.handleSeeked = function(){
   console.log("handleSeeked: ", this.video);
+  window.clearInterval(this.progressInterval);
 };
 
 Video.prototype.handleStalled = function(){
   console.log("handleStalled: ", this.video);
 };
 
+Video.prototype.handleTimelineClick = function(evt){
+  var duration = (evt.offsetX / this.timelineEl.offsetWidth) * this.video.duration;
+  this.setTime(duration);
+};
+
 Video.prototype.handleEnded = function(){
-  this.video.currentTime = 0;
+  this.setTime(0);
   this.video.play();
 };
 
@@ -73,6 +108,21 @@ Video.prototype.setSource = function(){
   }
 
   this.sourceSet = true;
-}
+};
+
+Video.prototype.setTime = function(seconds){
+  window.clearInterval(this.progressInterval);
+  this.video.currentTime = seconds;
+};
+
+Video.prototype.togglePlay = function(){
+  this.video.paused ? this.video.play() : this.video.pause();
+  this.manuallyPaused = this.video.paused;
+};
+
+Video.prototype.updateProgress = function(){
+  var progress = (this.video.currentTime / this.video.duration) * 100;
+  this.progressEl.style.width = progress + "%";
+};
 
 module.exports = Video;

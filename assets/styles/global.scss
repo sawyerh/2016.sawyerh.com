@@ -197,7 +197,7 @@ img, video{
   min-height: 25px;
   position: relative;
   margin-top: 7px;
-  padding-top: 8px;
+  padding-top: (25px - $h_video_timeline) / 2;
 }
 
 .video__play--control{
@@ -219,8 +219,8 @@ img, video{
 
 .video__timeline{
   background: #515151;
-  border-radius: 8px;
-  height: 8px;
+  border-radius: $h_video_timeline;
+  height: $h_video_timeline;
   position: relative;
   cursor: pointer;
   transition: 250ms all ease;
@@ -232,8 +232,18 @@ img, video{
   top: 0;
   height: 100%;
   background: #fff;
-  border-radius: 8px;
+  border-radius: $h_video_timeline;
   pointer-events: none;
+}
+
+.video__keyframe{
+  @include vertAlign;
+  text-indent: -9999px;
+  width: $h_video_timeline + 11;
+  height: $h_video_timeline + 11;
+  background: $text_dark;
+  border: 2px solid $bg_default;
+  border-radius: 50%;
 }
 
 .is-playing{

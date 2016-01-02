@@ -2,7 +2,15 @@
 title: Creative Mornings
 date: 2015-12-28 13:50:00 -05:00
 image: "/uploads/creativemornings.png"
-video: "/uploads/Screeny Video Dec 29, 2015, 3.54.37 PM.mp4"
+video:
+  mp4: "/uploads/creativemornings-walkthrough.mp4"
+  keyframes:
+    2: Login
+    14: Video player
+    25: Raining hearts
+    34: Map
+    49: Search
+    58: Profiles
 external_link: http://creativemornings.com
 dates: 2013–Present
 colors:

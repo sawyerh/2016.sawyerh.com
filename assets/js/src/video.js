@@ -9,13 +9,14 @@ function Video(wrap){
   this.video = wrap.querySelector('.video');
   this.sources = this.video.querySelectorAll('source');
   this.progressEl = wrap.querySelector('.video__progress');
-
   this.timelineEl = wrap.querySelector('.video__timeline');
+  this.keyframesEl = this.timelineEl.querySelector('.video__keyframes');
   var playButtons = wrap.querySelectorAll('.video__play');
 
   var events = {
     click: this.togglePlay,
     ended: this.handleEnded,
+    loadedmetadata: this.handleLoaded,
     pause: this.handlePause,
     play: this.handlePlay,
     playing: this.handlePlaying,
@@ -60,6 +61,32 @@ Video.prototype.handleExited = function(){
     return;
 
   this.video.pause();
+};
+
+Video.prototype.handleLoaded = function(){
+  if(this.keyframesEl){
+    var keyframes = JSON.parse(decodeURIComponent(this.keyframesEl.getAttribute('data-keyframes')));
+    var frag = document.createDocumentFragment();
+
+    Object.getOwnPropertyNames(keyframes).forEach((time) => {
+      var keyframe = document.createElement('button');
+      keyframe.classList.add('video__keyframe');
+      keyframe.innerHTML = keyframes[time];
+      keyframe.setAttribute('title', keyframes[time]);
+      keyframe.setAttribute('data-time', time);
+      keyframe.style.left = ((time / this.video.duration) * 100) + "%";
+      keyframe.addEventListener('click', this.handleKeyframeClick.bind(this), false);
+      frag.appendChild(keyframe);
+    });
+
+    this.keyframesEl.appendChild(frag);
+  }
+};
+
+Video.prototype.handleKeyframeClick = function(evt){
+  evt.stopPropagation();
+  var seconds = parseFloat(evt.target.getAttribute('data-time'));
+  this.setTime(seconds);
 };
 
 Video.prototype.handlePause = function(){

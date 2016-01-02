@@ -358,13 +358,14 @@
 	  this.video = wrap.querySelector('.video');
 	  this.sources = this.video.querySelectorAll('source');
 	  this.progressEl = wrap.querySelector('.video__progress');
-
 	  this.timelineEl = wrap.querySelector('.video__timeline');
+	  this.keyframesEl = this.timelineEl.querySelector('.video__keyframes');
 	  var playButtons = wrap.querySelectorAll('.video__play');
 
 	  var events = {
 	    click: this.togglePlay,
 	    ended: this.handleEnded,
+	    loadedmetadata: this.handleLoaded,
 	    pause: this.handlePause,
 	    play: this.handlePlay,
 	    playing: this.handlePlaying,
@@ -406,6 +407,34 @@
 	  if (this.manuallyPaused) return;
 
 	  this.video.pause();
+	};
+
+	Video.prototype.handleLoaded = function () {
+	  var _this2 = this;
+
+	  if (this.keyframesEl) {
+	    var keyframes = JSON.parse(decodeURIComponent(this.keyframesEl.getAttribute('data-keyframes')));
+	    var frag = document.createDocumentFragment();
+
+	    Object.getOwnPropertyNames(keyframes).forEach(function (time) {
+	      var keyframe = document.createElement('button');
+	      keyframe.classList.add('video__keyframe');
+	      keyframe.innerHTML = keyframes[time];
+	      keyframe.setAttribute('title', keyframes[time]);
+	      keyframe.setAttribute('data-time', time);
+	      keyframe.style.left = time / _this2.video.duration * 100 + "%";
+	      keyframe.addEventListener('click', _this2.handleKeyframeClick.bind(_this2), false);
+	      frag.appendChild(keyframe);
+	    });
+
+	    this.keyframesEl.appendChild(frag);
+	  }
+	};
+
+	Video.prototype.handleKeyframeClick = function (evt) {
+	  evt.stopPropagation();
+	  var seconds = parseFloat(evt.target.getAttribute('data-time'));
+	  this.setTime(seconds);
 	};
 
 	Video.prototype.handlePause = function () {

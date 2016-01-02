@@ -5,12 +5,12 @@ image: "/uploads/creativemornings.png"
 video:
   mp4: "/uploads/creativemornings-walkthrough.mp4"
   keyframes:
-    2: Login
-    14: Video player
-    25: Raining hearts
-    34: Map
-    49: Search
-    58: Profiles
+    '2': Login
+    '14': Video player
+    '25': Raining hearts
+    '34': Map
+    '49': Search
+    '58': Profiles
 external_link: http://creativemornings.com
 dates: 2013–Present
 colors:

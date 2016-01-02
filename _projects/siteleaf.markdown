@@ -4,7 +4,7 @@ date: 2015-12-28 13:50:00 -05:00
 external_link: http://siteleaf.com
 dates: 2013–Present
 video:
-    mp4: "/uploads/siteleaf-walkthrough.mp4"
+  mp4: "/uploads/siteleaf-walkthrough.mp4"
 colors:
 - "#399fdb"
 - "#8dcf3f"

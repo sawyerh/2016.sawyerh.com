@@ -16,7 +16,8 @@ defaults:
   values:
     layout: post
 - scope:
-    path: projects
+    path: ''
+    type: projects
   values:
     image: ''
     video: ''

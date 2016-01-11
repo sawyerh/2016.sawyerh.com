@@ -3,7 +3,9 @@ title: Highlights
 date: 2015-12-28 13:49:00 -05:00
 dates: 2015–Present
 external_link: http://highlights.sawyerh.com
-image: "/uploads/highlights-poster.png"
+video:
+  mp4: "/uploads/highlights-walkthrough.mp4"
+  poster: "/uploads/highlights-poster.png"
 colors:
 - "#ff8a80"
 - "#ff80ab"

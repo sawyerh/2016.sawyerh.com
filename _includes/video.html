@@ -2,7 +2,7 @@
   <div class="video__container">
     <button class="video__play video__play--overlay">Play</button>
 
-    <video class="{{ include.html_class }}__video video">
+    <video class="{{ include.html_class }}__video video" poster="{{ include.video.poster }}">
       <source data-src="{{ include.video.mp4 }}" type="video/mp4">
     </video>
   </div>

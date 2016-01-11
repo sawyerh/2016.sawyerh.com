@@ -1,8 +1,8 @@
 ---
 title: Creative Mornings
 date: 2015-12-28 13:50:00 -05:00
-image: "/uploads/creativemornings.png"
 video:
+  poster: "/uploads/creativemornings-walkthrough-poster.jpg"
   mp4: "/uploads/creativemornings-walkthrough.mp4"
   keyframes:
     '2': Login
@@ -28,4 +28,4 @@ notes:
     raining hearts when you liked a video.
 ---
 
-CreativeMornings is a breakfast lecture series for the creative community, founded by Tina Roth Eisenberg. In 2012, after a successful Kickstarter campaign, they approached Oak Studios to help design and build their online presence. As part of the team, I lead the design and front-end development of the initial CreativeMornings.com which included over 350 hours of video, 11 languages, and an administrative section for hosts to manage event registration and content. Over time, through our ongoing relationship with CreativeMornings, I’ve moved onto leading the front-end and Rails development, supporting a site that has grown to over 100k users, over 2k videos, and a presence in over 130 creative cities.
+CreativeMornings is a breakfast lecture series for the creative community, founded by [Tina Roth Eisenberg](http://www.swiss-miss.com/). In 2012, after a successful [Kickstarter campaign](https://www.kickstarter.com/projects/swissmiss/creativemornings-creating-an-archive), they approached [Oak Studios](http://oak.is) to help design and build their online presence. As part of the team, I lead the design and front-end development of the initial [CreativeMornings.com](http://creativemornings.com) which included over 350 hours of video, 11 languages, and an administrative section for hosts to manage event registration and content. Over time, through our ongoing relationship with CreativeMornings, we've continued to lead the site's development, supporting a site that has grown to over 100k users, over 2k videos, and a presence in over 130 creative cities.

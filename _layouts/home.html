@@ -62,14 +62,14 @@ layout: default
             <div class="project__body">
               {{ project.content }}
 
-              {% if project.notes %}
+              {% if project.notes and false %}
                 <button class="project__notes-toggle" data-original="See more notes on this project">See more notes on this project</button>
               {% endif %}
             </div>
           </div>
 
           {% if project.notes %}
-            <div class="project__notes is-hidden">
+            <div class="project__notes">
               {% for note in project.notes %}
                 <div class="project__note">
                   {% if note.video %}

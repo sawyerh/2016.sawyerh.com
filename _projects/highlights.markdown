@@ -1,6 +1,13 @@
 ---
 title: Highlights
 date: 2015-12-28 13:49:00 -05:00
+dates: 2015–Present
+external_link: http://highlights.sawyerh.com
+image: "/uploads/highlights-poster.png"
+colors:
+- "#ff8a80"
+- "#ff80ab"
+- "#ea80fc"
 ---
 
-I used to use a reading platform called Readmill to store all of my ebooks and highlights, however they were eventually acquired by Dropbox and shut down in 2014. After their shutdown my highlights became trapped in the apps I read in, usually iBooks or Kindle. As a result I took it upon myself to build a workflow that allowed me to export my highlights and store them on my own site.
+I read in iBooks and Kindle, where the highlights ecosystem isn't very open. To get around this, I devised [a hacky solution](https://medium.com/@sawyerh/how-i-m-exporting-my-highlights-from-the-grasps-of-ibooks-and-kindle-ce6a6031b298#.dljkgp2wx) using Email, AWS, and Siteleaf to get a grasp on my highlights and share them online. This is the site where all of those highlights end up.

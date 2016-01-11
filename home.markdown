@@ -7,8 +7,8 @@ seo_title: 'Sawyer Hollenshead (@sawyerh): Product designer and developer'
 seo_desc: Sawyer Hollenshead is a product designer and developer currently at Oak
   Studios.
 colors:
-- "#005cf7"
-- "#d19048"
+- "#43a5d6"
+- "#4c9d6d"
 - "#f4ca4f"
 - "#a255d6"
 layout: home

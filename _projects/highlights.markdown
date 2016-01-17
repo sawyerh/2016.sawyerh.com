@@ -12,4 +12,6 @@ colors:
 - "#ea80fc"
 ---
 
-I read in iBooks and Kindle, where the highlights ecosystem isn't very open. To get around this, I devised [a hacky solution](https://medium.com/@sawyerh/how-i-m-exporting-my-highlights-from-the-grasps-of-ibooks-and-kindle-ce6a6031b298#.dljkgp2wx) using Email, AWS, and Siteleaf to get a grasp on my highlights and share them online. This is the site where all of those highlights end up.
+I read in iBooks and Kindle, where the highlights ecosystem isn't exactly the most open. To get around this, I devised [this hacky solution](https://medium.com/@sawyerh/how-i-m-exporting-my-highlights-from-the-grasps-of-ibooks-and-kindle-ce6a6031b298#.dljkgp2wx) which uses Email, AWS, and Siteleaf to get a grasp on my highlights and share them online. This is the site where all of those highlights end up.
+
+[Read more about this project over on Medium](https://medium.com/@sawyerh/how-i-m-exporting-my-highlights-from-the-grasps-of-ibooks-and-kindle-ce6a6031b298)

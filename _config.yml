@@ -3,6 +3,9 @@ title: Sawyer Hollenshead
 url: http://sawyerh.com
 timezone: America/New_York
 collections:
+  posts:
+    title: Posts
+    output: true
   projects:
     title: Projects
     output: true

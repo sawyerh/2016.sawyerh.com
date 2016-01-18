@@ -114,20 +114,24 @@ Video.prototype.handlePause = function(){
   console.log("handlePause: ", this.video);
   window.clearInterval(this.progressInterval);
   this.wrap.classList.remove('is-playing');
+  this.wrap.classList.remove('is-loading');
 };
 
 Video.prototype.handlePlay = function(){
   console.log("handlePlay: ", this.video);
   this.progressInterval = window.setInterval(this.updateProgress.bind(this), 150);
+  this.wrap.classList.add('is-loading');
 };
 
 Video.prototype.handlePlaying = function(){
   console.log("handlePlaying: ", this.video);
   this.wrap.classList.add('is-playing');
+  this.wrap.classList.remove('is-loading');
 };
 
 Video.prototype.handleLoading = function(){
   console.log("handleLoading: ", this.video);
+  this.wrap.classList.add('is-loading');
 };
 
 Video.prototype.handleSeeked = function(){

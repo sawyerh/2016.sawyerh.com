@@ -302,6 +302,27 @@ img, video{
   }
 }
 
+.is-loading{
+  .video__play--overlay{
+    display: none;
+  }
+
+  .video__container{
+    &:before{
+      @include transform("translate3d(-50%, -50%, 0)");
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      content: '';
+      display: block;
+      width: 90px;
+      height: 90px;
+      background: url("/assets/images/loader.gif") center center no-repeat;
+      z-index: $z_above_galaxy;
+    }
+  }
+}
+
 // INTRO
 // ========================================================
 .intro{

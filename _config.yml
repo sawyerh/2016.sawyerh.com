@@ -22,8 +22,6 @@ defaults:
     path: ''
     type: projects
   values:
-    image: ''
-    video: ''
     external_link: ''
     dates: ''
 permalink: "/writing/:title"

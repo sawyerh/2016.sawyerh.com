@@ -40,9 +40,9 @@ layout: default
           {% endif %}
 
           <div class="wrap is-above-galaxy">
-            {% if project.video != '' %}
+            {% if project.video %}
               {% include video.html html_class="project__media" video=project.video %}
-            {% elsif project.image != '' %}
+            {% elsif project.image %}
               <img class="project__media" src="{{ project.image }}" alt="{{ project.title }}" />
             {% endif %}
           </div>

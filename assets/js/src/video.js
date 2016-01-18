@@ -28,7 +28,6 @@ function Video(wrap, options){
     playing: this.handlePlaying,
     progress: this.updateProgress,
     seeked: this.handleSeeked,
-    seeking: this.handleLoading,
     stalled: this.handleStalled
   };
 
@@ -127,11 +126,6 @@ Video.prototype.handlePlaying = function(){
   console.log("handlePlaying: ", this.video);
   this.wrap.classList.add('is-playing');
   this.wrap.classList.remove('is-loading');
-};
-
-Video.prototype.handleLoading = function(){
-  console.log("handleLoading: ", this.video);
-  this.wrap.classList.add('is-loading');
 };
 
 Video.prototype.handleSeeked = function(){

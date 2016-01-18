@@ -26,9 +26,7 @@ function Video(wrap, options){
     pause: this.handlePause,
     play: this.handlePlay,
     playing: this.handlePlaying,
-    progress: this.updateProgress,
-    seeked: this.handleSeeked,
-    stalled: this.handleStalled
+    progress: this.updateProgress
   };
 
   if(options.waypoints){
@@ -51,8 +49,6 @@ function Video(wrap, options){
 }
 
 Video.prototype.handleEntered = function(){
-  console.log("handleEntered: ", this.video);
-
   if(this.manuallyPaused)
     return;
 
@@ -60,8 +56,6 @@ Video.prototype.handleEntered = function(){
 };
 
 Video.prototype.handleExited = function(){
-  console.log("handleExited: ", this.video);
-
   if(this.manuallyPaused)
     return;
 
@@ -110,30 +104,19 @@ Video.prototype.handleKeyframeLeave = function(evt){
 };
 
 Video.prototype.handlePause = function(){
-  console.log("handlePause: ", this.video);
   window.clearInterval(this.progressInterval);
   this.wrap.classList.remove('is-playing');
   this.wrap.classList.remove('is-loading');
 };
 
 Video.prototype.handlePlay = function(){
-  console.log("handlePlay: ", this.video);
   this.progressInterval = window.setInterval(this.updateProgress.bind(this), 150);
   this.wrap.classList.add('is-loading');
 };
 
 Video.prototype.handlePlaying = function(){
-  console.log("handlePlaying: ", this.video);
   this.wrap.classList.add('is-playing');
   this.wrap.classList.remove('is-loading');
-};
-
-Video.prototype.handleSeeked = function(){
-  console.log("handleSeeked: ", this.video);
-};
-
-Video.prototype.handleStalled = function(){
-  console.log("handleStalled: ", this.video);
 };
 
 Video.prototype.handleTimelineClick = function(evt){

@@ -183,6 +183,11 @@ img, video{
   width: 150px;
   height: 150px;
   z-index: 2;
+
+  @include max-width(640px){
+    width: 90px;
+    height: 90px;
+  }
 }
 
 .project__note .video__play--overlay{

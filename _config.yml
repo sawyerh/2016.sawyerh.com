@@ -26,7 +26,7 @@ defaults:
     dates: ''
 sass:
   style: :compressed
-permalink: "/writing/:title"
+permalink: "/writing/:title/"
 markdown: redcarpet
 exclude:
 - Copywriting.md

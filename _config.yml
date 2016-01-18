@@ -12,8 +12,6 @@ collections:
   uploads:
     title: Uploads
     output: true
-sass:
-  style: :compressed
 defaults:
 - scope:
     path: ''
@@ -26,6 +24,8 @@ defaults:
   values:
     external_link: ''
     dates: ''
+sass:
+  style: :compressed
 permalink: "/writing/:title"
 markdown: redcarpet
 exclude:

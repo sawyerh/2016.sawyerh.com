@@ -65,6 +65,11 @@ img, video{
   border-bottom: 2px solid $border_color;
   padding-bottom: em($gutter * 2);
   margin-bottom: em($gutter * 2);
+
+  @include max-width($bp_font_size_body_downsized){
+    padding-bottom: em($gutter * 1.25);
+    margin-bottom: em($gutter * 1.25);
+  }
 }
 
 // TYPE
@@ -148,7 +153,6 @@ img, video{
 }
 
 .galaxy__wrap{
-  width: 95%;
   max-width: $w_wrap + 500;
   margin: auto;
   position: relative;
@@ -295,6 +299,10 @@ img, video{
   padding: em(100px) 0 0;
   margin-top: -20px;
 
+  @include max-width($bp_header_mini){
+    padding-top: em($gutter * 1.25);
+  }
+
   .galaxy{
     bottom: 40%;
   }
@@ -306,6 +314,11 @@ img, video{
   border-radius: 50%;
   margin-bottom: 15px;
   vertical-align: bottom;
+
+  @include max-width($bp_header_mini){
+    width: 90px;
+    height: 90px;
+  }
 }
 
 .intro__body{
@@ -318,6 +331,12 @@ img, video{
 
   p{
     font-size: em($font_size_large);
+  }
+}
+
+@include max-width($bp_header_mini){
+  .social-icons{
+    display: block;
   }
 }
 

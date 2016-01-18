@@ -22,6 +22,11 @@ body{
   }
 }
 
+::selection{
+  background: #fff;
+  color: #000;
+}
+
 a{
   color: $text_white;
 
@@ -354,7 +359,7 @@ img, video{
 }
 
 .social-icon--vsco{
-  color: #ae995a;
+  color: #AB9F83;
   margin-left: 2px;
 }
 

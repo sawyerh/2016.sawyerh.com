@@ -8,7 +8,7 @@ collections:
     output: true
   projects:
     title: Projects
-    output: true
+    output: false
   uploads:
     title: Uploads
     output: true

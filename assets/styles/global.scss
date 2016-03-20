@@ -598,3 +598,35 @@ img, video{
   margin-right: 5px;
   min-width: 40px;
 }
+
+// Writing
+// ========================================================
+.collection__posts{
+  background: #fff;
+  color: #444;
+
+  .main{
+    margin-top: $gutter;
+  }
+
+  h1, h2, h3, a, strong{
+    color: #000;
+  }
+
+  h1{
+    font-size: em(42px);
+  }
+
+  h2{
+    @extend .heading;
+    margin-top: em(45px);
+
+    &:first-child{
+      margin-top: 0;
+    }
+  }
+
+  .wrap{
+    max-width: 700px;
+  }
+}

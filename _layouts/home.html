@@ -32,7 +32,7 @@ layout: default
 <section class="projects">
   <h1 class="heading ss-down wrap">Selected works from 2007&ndash;{{ site.time | date: "%Y" }}</h1>
 
-  {% assign projects = site.projects | sort: 'date' | reverse %}
+  {% assign projects = site.projects | sort: 'position' %}
   {% for project in projects %}
     {% unless project.section == 'additional' or project.section == 'archive' %}
       <article class="project">

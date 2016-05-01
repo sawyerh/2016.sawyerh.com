@@ -1,6 +1,7 @@
 ---
 title: Dropmark
 date: 2015-12-28 13:50:00 -05:00
+position: 0
 video:
   mp4: "/uploads/collection-and-item.mp4"
 external_link: http://dropmark.com

@@ -1,7 +1,7 @@
 ---
 title: Creative Mornings
 date: 2015-12-28 13:48:00 -05:00
-position: 21
+position: 2
 video:
   mp4: "/uploads/creativeMornings-walkthrough-2.mp4"
 external_link: http://creativemornings.com

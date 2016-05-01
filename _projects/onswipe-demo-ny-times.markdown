@@ -1,7 +1,7 @@
 ---
 title: 'OnSwipe demo: NY Times'
 date: 2015-12-31 14:04:00 -05:00
-position: 15
+position: 16
 external_link: http://archive.sawyerh.com/onswipe/nytimes/
 dates: 2011
 section: archive

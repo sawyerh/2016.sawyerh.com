@@ -1,7 +1,7 @@
 ---
 title: Gazette
 date: 2015-12-28 13:46:00 -05:00
-position: 4
+position: 5
 image: "/uploads/gazette.jpg"
 external_link: http://gazette.io
 dates: 2013–2014

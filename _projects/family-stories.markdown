@@ -1,7 +1,7 @@
 ---
 title: Family Stories
 date: 2015-12-31 13:55:00 -05:00
-position: 22
+position: 23
 external_link: http://stories.hollenshead.co
 dates: 2013
 section: additional

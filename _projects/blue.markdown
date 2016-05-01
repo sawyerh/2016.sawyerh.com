@@ -1,6 +1,7 @@
 ---
 title: Blue
 date: 2016-05-01 14:39:00 -04:00
+position: 4
 external_link: http://partlyblue.com
 dates: January 2013
 colors:

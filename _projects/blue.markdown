@@ -6,7 +6,9 @@ dates: January 2013
 colors:
 - "#EE5C34"
 - "#FBD135"
-- "#7CBAE4"
+- "#DC4357"
+video:
+  mp4: "/uploads/blue-timelapse.mp4"
 ---
 
 Blue was the first iOS app we launched at [Oak](http://oak.is/thinking/blue), and was designed and built in one week during our yearly team getaway. Blue provides 36-hour weather forecasts relevant to your location in a fast and fun interface. You can swipe up to see each hour represented in a colorful gradient visual, generated based on three variables: temperature, humidity, and sunrise/sunset times.

@@ -4,9 +4,9 @@ date: 2016-05-01 14:39:00 -04:00
 external_link: http://partlyblue.com
 dates: January 2013
 colors:
+- "#DC4357"
 - "#EE5C34"
 - "#FBD135"
-- "#DC4357"
 video:
   mp4: "/uploads/blue-timelapse.mp4"
 ---

@@ -1,7 +1,7 @@
 ---
 title: Highlights
 date: 2015-12-28 13:47:00 -05:00
-position: 22
+position: 3
 dates: 2015–Present
 external_link: http://highlights.sawyerh.com
 video:

@@ -35,7 +35,7 @@ layout: default
   {% assign projects = site.projects | sort: 'position' %}
   {% for project in projects %}
     {% unless project.section == 'additional' or project.section == 'archive' %}
-      <article class="project" id="{{ project.slug }}">
+      <article class="project" id="{{ project.title | slugify }}">
         <div class="galaxy__wrap project__media__wrap">
           {% if project.colors and project.colors != '' %}
             <canvas class="galaxy" data-colors="{{ project.colors | jsonify | uri_escape }}"></canvas>

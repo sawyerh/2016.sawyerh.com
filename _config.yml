@@ -43,4 +43,3 @@ footer_content: Content managed with [Siteleaf](http://siteleaf.com). Site hoste
 google_analytics: 3634425-8
 gems:
 - jekyll-sitemap
-- jekyll-feed

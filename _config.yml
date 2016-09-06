@@ -21,8 +21,9 @@ defaults:
     path: ''
     type: projects
   values:
-    external_link: ''
-    dates: ''
+    external_link:
+    dates:
+    section:
 sass:
   style: compressed
 permalink: "/writing/:title/"

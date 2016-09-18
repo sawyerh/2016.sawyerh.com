@@ -124,35 +124,6 @@ img, video{
   }
 }
 
-// GALAXY
-// ========================================================
-.galaxy{
-  height: 500px;
-  max-height: 100%;
-  width: 100%;
-  display: block;
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  z-index: $z_galaxy;
-}
-
-.galaxy__wrap{
-  max-width: $w_wrap + 500;
-  margin: auto;
-  position: relative;
-}
-
-.galaxy--full{
-  height: 100%;
-  bottom: 0;
-}
-
-.is-above-galaxy{
-  z-index: $z_above_galaxy;
-  position: relative;
-}
-
 // Video
 // ========================================================
 .video__container{
@@ -305,6 +276,18 @@ img, video{
 
 // INTRO
 // ========================================================
+@keyframes showAboveFold {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 10px, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
 .intro{
   position: relative;
   padding-top: em($gutter * 2);
@@ -327,8 +310,9 @@ img, video{
 }
 
 .intro__avatar{
-  width: 200px;
-  height: 200px;
+  animation: showAboveFold 1.5s ease 100ms both;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
   margin-bottom: 15px;
   vertical-align: bottom;
@@ -341,14 +325,6 @@ img, video{
 
 .intro__heading {
   color: #000;
-
-  .ss-icon{
-    font-size: em($font_size_heading_icon, $font_size_heading);
-  }
-
-  .ss-icon:first-of-type{
-    margin-left: 10px;
-  }
 }
 
 .intro__body{
@@ -357,6 +333,7 @@ img, video{
 }
 
 .intro__body__text{
+  animation: showAboveFold 1.5s ease 400ms both;
   max-width: 650px;
 
   a {
@@ -368,14 +345,10 @@ img, video{
   }
 }
 
-@include max-width($bp_header_mini){
-  .social-icons{
-    display: block;
-  }
-}
-
 .social-icon {
   text-decoration: none;
+  font-size: em($font_size_heading_icon, $font_size_heading);
+  display: inline-block;
 }
 
 a.social-icon--twitter{
@@ -384,6 +357,34 @@ a.social-icon--twitter{
 
 a.social-icon--spotify{
   color: #1ED761;
+}
+
+.social-icon--github {
+  font-size: 0;
+  text-align: center;
+}
+
+@include max-width($bp_header_mini){
+  .social-icons {
+    display: block;
+  }
+
+  .social-icon {
+    font-size: 18px;
+
+    &:first-of-type{
+      margin-left: 0;
+    }
+  }
+
+  .social-icon--github img {
+    height: 18px;
+  }
+}
+
+.external-nav {
+  animation: showAboveFold 1.5s ease 400ms both;
+  margin-top: $gutter / 2;
 }
 
 .external-nav__link{
@@ -403,6 +404,7 @@ a.social-icon--spotify{
     position: absolute;
     right: 0;
     top: 0;
+    margin-top: 0;
   }
 
   .external-nav__link{
@@ -413,6 +415,10 @@ a.social-icon--spotify{
 
 // PROJECTS
 // ========================================================
+.heading--projects {
+  animation: showAboveFold 1.5s ease 400ms both;
+}
+
 .project__media{
   width: 100%;
   margin-bottom: em($gutter);

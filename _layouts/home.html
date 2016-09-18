@@ -10,11 +10,15 @@ layout: default
       <div class="intro__body__text">
         <h1 class="intro__heading heading is-close">Sawyer Hollenshead
           <span class="social-icons">
-            <a href="https://twitter.com/sawyerh" class="ss-icon social-icon social-icon--twitter">twitter</a>
+            <a href="https://twitter.com/sawyerh" class="ss-icon social-icon social-icon--twitter">
+              twitter
+            </a>
             <a href="https://github.com/sawyerh" class="social-icon social-icon--github">
               <img src="/assets/images/github.svg" height="24" alt="GitHub">
             </a>
-            <a href="https://open.spotify.com/user/1247662653" class="ss-icon social-icon social-icon--spotify">spotify</a>
+            <a href="https://open.spotify.com/user/1247662653" class="ss-icon social-icon social-icon--spotify">
+              spotify
+            </a>
           </span>
         </h1>
 
@@ -30,7 +34,7 @@ layout: default
 </section>
 
 <section class="projects">
-  <h1 class="heading wrap">Selected works from 2007&ndash;{{ site.time | date: "%Y" }}</h1>
+  <h1 class="heading heading--projects wrap">Selected works from 2007&ndash;{{ site.time | date: "%Y" }}</h1>
 
   {% assign projects = site.projects | sort: 'position' %}
   {% for project in projects %}

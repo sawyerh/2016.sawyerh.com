@@ -5,7 +5,7 @@ position: 3
 external_link: http://siteleaf.com
 dates: 2013–Present
 video:
-  mp4: "/uploads/siteleaf.mp4"
+  mp4: "/uploads/siteleaf-v2.mp4"
 colors:
 - "#399fdb"
 - "#8dcf3f"

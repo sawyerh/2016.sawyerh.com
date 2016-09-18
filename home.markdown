@@ -14,4 +14,4 @@ colors:
 layout: home
 ---
 
-I’m a product designer and developer interested in prototyping, designing, and building practical, purpose-driven products. I’m currently a partner at [Oak Studios](http://oak.is).
+I’m a product designer and developer interested in prototyping, designing, and building practical, purpose-driven digital products. I’m currently a partner at [Oak Studios](http://oak.is).

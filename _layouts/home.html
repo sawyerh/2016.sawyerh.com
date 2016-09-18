@@ -60,31 +60,8 @@ layout: default
 
             <div class="project__body">
               {{ project.content }}
-
-              {% if project.notes and false %}
-                <button class="project__notes-toggle" data-original="See more notes on this project">See more notes on this project</button>
-              {% endif %}
             </div>
           </div>
-
-          {% if project.notes %}
-            <div class="project__notes">
-              {% for note in project.notes %}
-                <div class="project__note">
-                  {% if note.video %}
-                    <div class="project__note__media__wrap">
-                      {% include video.html html_class="project__note__media" video=note.video %}
-                    </div>
-                  {% endif %}
-
-                  <div class="project__note__body">
-                    <h2 class="project__note__title subheading">{{ note.title }}</h2>
-                    {{ note.body | markdownify }}
-                  </div>
-                </div>
-              {% endfor %}
-            </div>
-          {% endif %}
         </div>
       </article>
     {% endunless %}

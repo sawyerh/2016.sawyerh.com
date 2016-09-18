@@ -1,5 +1,5 @@
 {
-  "name": "highlights.sawyerhollenshead.com",
+  "name": "sawyerh.com",
   "scripts": {
     "dev": "NODE_ENV=development webpack --progress --colors --watch & grunt",
     "build": "NODE_ENV=production webpack --progress --colors"
@@ -20,5 +20,8 @@
     "browser": true,
     "quotmark": false,
     "sub": true
+  },
+  "dependencies": {
+    "waypoints": "^4.0.1"
   }
 }

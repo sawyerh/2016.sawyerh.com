@@ -2,19 +2,19 @@
 layout: default
 ---
 
-<section class="intro galaxy__wrap">
-  <canvas class="galaxy galaxy--full" data-colors="{{ page.colors | jsonify | uri_escape }}"></canvas>
-
-  <div class="wrap wrap--bordered is-above-galaxy">
+<section class="intro">
+  <div class="wrap wrap--padded">
     <img src="{{ page.image }}" alt="Avatar" class="intro__avatar" />
 
     <div class="intro__body">
       <div class="intro__body__text">
-        <h1 class="heading is-close ss-up">Sawyer Hollenshead
+        <h1 class="intro__heading heading is-close">Sawyer Hollenshead
           <span class="social-icons">
-            <a href="https://twitter.com/sawyerh" class="ss-icon social-icon--twitter">twitter</a>
-            <a href="https://github.com/sawyerh" class="ss-icon social-icon--github">github</a>
-            <a href="https://open.spotify.com/user/1247662653" class="ss-icon social-icon--spotify">spotify</a>
+            <a href="https://twitter.com/sawyerh" class="ss-icon social-icon social-icon--twitter">twitter</a>
+            <a href="https://github.com/sawyerh" class="social-icon social-icon--github">
+              <img src="/assets/images/github.svg" height="24" alt="GitHub">
+            </a>
+            <a href="https://open.spotify.com/user/1247662653" class="ss-icon social-icon social-icon--spotify">spotify</a>
           </span>
         </h1>
 
@@ -22,26 +22,22 @@ layout: default
       </div>
 
       <nav class="external-nav">
-        <a href="https://medium.com/@sawyerh/latest" class="ss-redirect external-nav__link" target="_blank">Writing</a>
-        <a href="http://highlights.sawyerh.com" class="ss-redirect external-nav__link" target="_blank">Reading</a>
+        <a href="https://medium.com/@sawyerh/latest" class="ss-redirect external-nav__link right" target="_blank">Writing</a>
+        <a href="http://highlights.sawyerh.com" class="ss-redirect external-nav__link right" target="_blank">Reading</a>
       </nav>
     </div>
   </div>
 </section>
 
 <section class="projects">
-  <h1 class="heading ss-down wrap">Selected works from 2007&ndash;{{ site.time | date: "%Y" }}</h1>
+  <h1 class="heading wrap">Selected works from 2007&ndash;{{ site.time | date: "%Y" }}</h1>
 
   {% assign projects = site.projects | sort: 'position' %}
   {% for project in projects %}
     {% unless project.section == 'additional' or project.section == 'archive' %}
       <article class="project" id="{{ project.title | slugify }}">
-        <div class="galaxy__wrap project__media__wrap">
-          {% if project.colors and project.colors != '' %}
-            <canvas class="galaxy" data-colors="{{ project.colors | jsonify | uri_escape }}"></canvas>
-          {% endif %}
-
-          <div class="wrap is-above-galaxy">
+        <div class="project__media__wrap">
+          <div class="wrap">
             {% if project.video %}
               {% include video.html html_class="project__media" video=project.video %}
             {% elsif project.image %}
@@ -50,10 +46,10 @@ layout: default
           </div>
         </div>
 
-        <div class="project__inner wrap wrap--bordered">
+        <div class="project__inner wrap wrap--padded">
           <div class="project__info">
             <header class="project__header">
-              <h2 class="project__title heading is-close ss-right">{{ project.title }}</h2>
+              <h2 class="project__title heading is-close">{{ project.title }}</h2>
               <dl class="project__meta">
                 <dt>Link</dt>
                 <dd><a href="{{ project.external_link }}">{{ project.external_link | replace: 'http://', ''}}</a></dd>
@@ -95,8 +91,8 @@ layout: default
   {% endfor %}
 </section>
 
-<section class="ad-projects wrap wrap--bordered">
-  <h1 class="heading ss-down">Additional projects I'm proud of</h1>
+<section class="ad-projects wrap wrap--padded">
+  <h1 class="heading">Additional projects I'm proud of</h1>
 
   {% assign additional_projects = site.projects | sort: 'date' | where: 'section', 'additional' | reverse %}
   {% for project in additional_projects %}

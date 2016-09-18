@@ -1,5 +1,6 @@
 ---
 title: Sawyer Hollenshead
+url: http://www.sawyerh.com
 timezone: America/New_York
 collections:
   posts:
@@ -21,9 +22,9 @@ defaults:
     path: ''
     type: projects
   values:
-    external_link: 
-    dates: 
-    section: 
+    external_link:
+    dates:
+    section:
 sass:
   style: compressed
 permalink: "/writing/:title/"

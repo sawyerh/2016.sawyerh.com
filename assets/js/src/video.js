@@ -13,6 +13,7 @@ function Video(wrap, options){
   this.manuallyPaused = false;
   this.sourceSet = false;
   this.video = wrap.querySelector('.video');
+  this.poster = wrap.querySelector('.video__poster');
   this.sources = this.video.querySelectorAll('source');
   this.progressEl = wrap.querySelector('.video__progress');
   this.timelineEl = wrap.querySelector('.video__timeline');
@@ -85,6 +86,8 @@ Video.prototype.handleLoaded = function(){
 
     this.keyframesEl.appendChild(frag);
   }
+
+  this.poster.style.display = 'none';
 };
 
 Video.prototype.handleKeyframeClick = function(evt){
@@ -137,6 +140,8 @@ Video.prototype.play = function(){
 }
 
 Video.prototype.setSource = function(){
+  this.poster.style.display = 'block';
+
   for (var i = this.sources.length - 1; i >= 0; i--) {
     this.sources[i].setAttribute('src', this.sources[i].getAttribute('data-src'));
     this.video.load();

@@ -27,6 +27,7 @@ As I mentioned above, an ebook is basically a bunch of HTML files that are zippe
 
 This is the file used for your ebook's table of contents. For Siteleaf, I created a `toc.ncx.liquid` theme file with code similar to the following:
 
+{% raw %}
 ```html
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <ncx xmlns="http://www.daisy.org/z3986/2005/ncx/" version="2005-1">
@@ -54,6 +55,7 @@ This is the file used for your ebook's table of contents. For Siteleaf, I create
   </navMap>
 </ncx>
 ```
+{% endraw %}
 
 In the code above, I'm looping through my site's pages and outputting the necessary XML tags for each article to show in the table of contents.
 
@@ -63,6 +65,7 @@ The `content.opf` file is another required file for your ebook to function. It's
 
 For my ebook, I created a Siteleaf `content.opf.liquid` theme file with the following code:
 
+{% raw %}
 ```html
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <package xmlns="http://www.idpf.org/2007/opf" version="2.0" unique-identifier="bookid">
@@ -100,6 +103,7 @@ For my ebook, I created a Siteleaf `content.opf.liquid` theme file with the foll
   </guide>
 </package>
 ```
+{% endraw %}
 
 ### mimetype
 
@@ -111,6 +115,7 @@ If you're creating an ePub, you'll want to include a `mimetype` file in the dire
 
 The last required file. This points to your `content.opf` file. This is what mine looked like:
 
+{% raw %}
 ```html
 <?xml version="1.0"?>
 <container version="1.0" xmlns="urn:oasis:names:tc:opendocument:xmlns:container">
@@ -119,6 +124,7 @@ The last required file. This points to your `content.opf` file. This is what min
     </rootfiles>
 </container>
 ```
+{% endraw %}
 
 ## Managing ebook content in Siteleaf
 
@@ -132,6 +138,7 @@ For the image, date, author and website, I used [Siteleaf meta fields](http://ww
 
 Each of my Siteleaf pages used Siteleaf's `default.html` template file. Below is the body of the article template:
 
+{% raw %}
 ```html
   <div id="pocket-chapter-cover">
 
@@ -157,6 +164,7 @@ Each of my Siteleaf pages used Siteleaf's `default.html` template file. Below is
 
   {{ body }}
 ```
+{% endraw %}
 
 ## Packaging Siteleaf pages into an ePub
 

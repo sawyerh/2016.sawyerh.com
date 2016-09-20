@@ -40,8 +40,8 @@ footer_content: Built on [Jekyll](http://jekyllrb.com/). Managed with [Siteleaf]
   Hosted on [AWS](http://aws.amazon.com). Soleil typeface by [Type Together](http://www.type-together.com/)
   and served via [Typekit](http://typekit.com). Icon font by [Symbolset](http://symbolset.com).
   Designed in [Sketch](https://www.sketchapp.com/). Written in [Sublime Text](http://www.sublimetext.com/).
-  Built in [NYC](https://media.giphy.com/media/7mUhYZhzb8AM/giphy.gif) listening to
-  [tunes](https://open.spotify.com/user/1247662653/playlist/668ohC3PIIyIyj1g8R7nQu).
+  Built in [NYC](https://media.giphy.com/media/7mUhYZhzb8AM/giphy.gif) while listening
+  to [tunes](https://open.spotify.com/user/1247662653/playlist/668ohC3PIIyIyj1g8R7nQu).
 google_analytics: 3634425-8
 gems:
 - jekyll-sitemap

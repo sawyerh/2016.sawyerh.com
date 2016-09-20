@@ -4,7 +4,7 @@
 .ad-projects{
   @include clearfix;
   margin-bottom: em($gutter);
-  padding-bottom: em($gutter * 0.5);
+  padding-bottom: em($gutter);
 }
 
 .ad-project{
@@ -49,7 +49,7 @@
 
 .ad-project__subtitle{
   font-size: em($font_size_small, $font_size_small);
-  margin: 0 0 3px;
+  margin: 0;
 
   @include min-width($bp_ad_project_stacked){
     @include ellipsis;

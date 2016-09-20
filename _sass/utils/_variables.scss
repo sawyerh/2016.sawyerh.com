@@ -4,29 +4,31 @@ $border_color: #444;
 
 // TYPE
 // ========================================================
-$sans_serif: "europa", "Helvetica Neue", sans-serif;
+$sans_serif: "soleil", "Helvetica Neue", sans-serif;
 
 $text_default: #CBCBCB;
 $text_white: #fff;
 $text_dark: #A2A2A2;
 
-$font_size_body: 20px;
-$font_size_body_downsized: 18px;
+$font_size_body: 18px;
+$font_size_body_downsized: 16px;
 
 $font_size_small: 16px;
-$font_size_large: 23px;
+$font_size_large: 20px;
 
-$font_size_heading: 32px;
-$font_size_heading_icon: 24px;
+$font_size_heading: 30px;
+$font_size_heading_icon: 22px;
 
 $font_size_subheading: 20px;
+
+$font_weight_bold: 600;
 
 // Dimensions
 // ========================================================
 $w_wrap: 990px;
 $gutter: 45px;
 
-$w_project_body: 610px;
+$w_project_body: 580px;
 $w_project_sidebar: ($w_wrap - $w_project_body) / 2;
 
 $w_project_note_body: 400px;

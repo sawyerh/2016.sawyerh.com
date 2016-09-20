@@ -21,13 +21,14 @@ defaults:
     path: ''
     type: projects
   values:
-    external_link: 
-    dates: 
+    external_link:
+    dates:
     section: featured
 url: http://www.sawyerh.com
 sass:
   style: compressed
 permalink: "/writing/:title/"
+markdown: redcarpet
 exclude:
 - README.md
 - ".gitignore"

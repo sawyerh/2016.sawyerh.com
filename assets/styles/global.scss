@@ -37,7 +37,7 @@ a{
 
 p{
   margin: 0 0 1.5em;
-  line-height: 1.4;
+  line-height: 1.5;
 
   &:last-child{
     margin-bottom: 0;
@@ -54,6 +54,10 @@ button{
 
 img, video{
   max-width: 100%;
+}
+
+h1, h2, h3, h4, strong {
+  font-weight: $font_weight_bold;
 }
 
 .is-hidden{
@@ -84,14 +88,14 @@ img, video{
 // ========================================================
 .heading{
   font-size: em($font_size_heading);
-  font-weight: bold;
+  font-weight: $font_weight_bold;
   margin: 0 auto 30px;
   line-height: 1.2;
 }
 
 .subheading{
   font-size: em($font_size_subheading);
-  font-weight: bold;
+  font-weight: $font_weight_bold;
 }
 
 .heading, .subheading{
@@ -187,7 +191,7 @@ img, video{
 
 .intro__body__text{
   animation: showAboveFold 1.5s ease 400ms both;
-  max-width: 650px;
+  max-width: 640px;
 
   a {
     color: #000;
@@ -202,6 +206,10 @@ img, video{
   text-decoration: none;
   font-size: em($font_size_heading_icon, $font_size_heading);
   display: inline-block;
+
+  &:first-of-type {
+    margin-left: 5px
+  }
 }
 
 a.social-icon--twitter{
@@ -270,7 +278,7 @@ a.social-icon--spotify{
 // ========================================================
 .archived-projects{
   list-style: none;
-  margin: 0;
+  margin: 0 0 em($gutter * 2);
   padding: 0;
 }
 

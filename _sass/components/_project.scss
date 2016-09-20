@@ -11,10 +11,6 @@
   }
 }
 
-.project__media__wrap .galaxy{
-  bottom: $gutter * -1;
-}
-
 .project__meta{
   font-size: em($font_size_small);
   color: $text_dark;
@@ -32,18 +28,6 @@
   dd{
     margin: 0 0 3px;
     padding: 0;
-  }
-}
-
-.project__notes-toggle{
-  border-bottom: 2px solid $text_white;
-  color: $text_white;
-  font-weight: bold;
-  font-size: em($font_size_body);
-  font-family: $sans_serif;
-
-  &:hover{
-    opacity: 0.7;
   }
 }
 

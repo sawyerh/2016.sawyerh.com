@@ -1,6 +1,7 @@
 ---
 title: Highlight Email Parser
 date: 2016-09-19 21:56:00 -04:00
+position: 2
 external_link: https://github.com/sawyerh/highlights-email-to-lambda-to-siteleaf
 dates: November 2015
 section: code

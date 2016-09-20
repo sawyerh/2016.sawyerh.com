@@ -1,6 +1,7 @@
 ---
 title: Lambda Asset Pipeline
 date: 2016-09-19 21:55:00 -04:00
+position: 0
 external_link: https://github.com/sawyerh/lambda-asset-pipeline
 dates: June 25
 section: code

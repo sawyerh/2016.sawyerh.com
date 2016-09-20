@@ -2,73 +2,18 @@
 layout: default
 ---
 
-<section class="intro">
-  <div class="wrap wrap--padded">
-    <img src="{{ page.image }}" alt="Avatar" class="intro__avatar" />
-
-    <div class="intro__body">
-      <div class="intro__body__text">
-        <h1 class="intro__heading heading is-close">Sawyer Hollenshead
-          <span class="social-icons">
-            <a href="https://twitter.com/sawyerh" class="ss-icon social-icon social-icon--twitter">
-              twitter
-            </a>
-            <a href="https://github.com/sawyerh" class="social-icon social-icon--github">
-              <img src="/assets/images/github.svg" height="24" alt="GitHub">
-            </a>
-            <a href="https://open.spotify.com/user/1247662653" class="ss-icon social-icon social-icon--spotify">
-              spotify
-            </a>
-          </span>
-        </h1>
-
-        {{ content }}
-      </div>
-
-      <nav class="external-nav">
-        <a href="https://medium.com/@sawyerh/latest" class="ss-redirect external-nav__link right" target="_blank">Writing</a>
-        <a href="http://highlights.sawyerh.com" class="ss-redirect external-nav__link right" target="_blank">Reading</a>
-      </nav>
-    </div>
-  </div>
-</section>
+{% include intro.html %}
 
 <section class="projects">
   <h1 class="heading heading--projects wrap">Selected works from 2007&ndash;{{ site.time | date: "%Y" }}</h1>
 
-  {% assign projects = site.projects | sort: 'position' %}
+  {% assign projects = site.projects | where: 'section', 'featured' | sort: 'position' %}
   {% for project in projects %}
-    {% unless project.section == 'additional' or project.section == 'archive' %}
-      <article class="project" id="{{ project.title | slugify }}">
-        <div class="project__media__wrap">
-          <div class="wrap">
-            {% if project.video %}
-              {% include video.html html_class="project__media" video=project.video %}
-            {% elsif project.image %}
-              <img class="project__media" src="{{ project.image }}" alt="{{ project.title }}" />
-            {% endif %}
-          </div>
-        </div>
+    {% include featured-project.html %}
 
-        <div class="project__inner wrap wrap--padded">
-          <div class="project__info">
-            <header class="project__header">
-              <h2 class="project__title heading is-close">{{ project.title }}</h2>
-              <dl class="project__meta">
-                <dt>Link</dt>
-                <dd><a href="{{ project.external_link }}">{{ project.external_link | replace: 'http://', ''}}</a></dd>
-                <dt>Dates</dt>
-                <dd>{{ project.dates }}</dd>
-              </dl>
-            </header>
-
-            <div class="project__body">
-              {{ project.content }}
-            </div>
-          </div>
-        </div>
-      </article>
-    {% endunless %}
+    {% if forloop.index == 2 %}
+      {% include code-projects.html %}
+    {% endif %}
   {% endfor %}
 </section>
 

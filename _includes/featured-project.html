@@ -1,0 +1,29 @@
+<article class="project" id="{{ project.title | slugify }}">
+  <div class="project__media__wrap">
+    <div class="wrap">
+      {% if project.video %}
+        {% include video.html html_class="project__media" video=project.video %}
+      {% elsif project.image %}
+        <img class="project__media" src="{{ project.image }}" alt="{{ project.title }}" />
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="project__inner wrap wrap--padded">
+    <div class="project__info">
+      <header class="project__header">
+        <h2 class="project__title heading is-close">{{ project.title }}</h2>
+        <dl class="project__meta">
+          <dt>Link</dt>
+          <dd><a href="{{ project.external_link }}">{{ project.external_link | replace: 'http://', ''}}</a></dd>
+          <dt>Dates</dt>
+          <dd>{{ project.dates }}</dd>
+        </dl>
+      </header>
+
+      <div class="project__body">
+        {{ project.content }}
+      </div>
+    </div>
+  </div>
+</article>

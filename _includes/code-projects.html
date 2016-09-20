@@ -1,0 +1,26 @@
+{% assign code_projects = site.projects | where: 'section', 'code' | sort: 'position' %}
+
+<section class="code-projects wrap wrap--padded">
+  {% for project in code_projects %}
+    <article class="code-project" id="{{ project.title | slugify }}">
+      <div class="code-project__info">
+        <header class="code-project__header">
+          <dl class="code-project__meta">
+            <dt>Link</dt>
+            <dd>
+              <a class="code-project__meta__link" href="{{ project.external_link }}">
+                {{ project.external_link | replace: 'https://github.com/sawyerh/', ''}}
+              </a>
+            </dd>
+            <dt>Dates</dt>
+            <dd class="code-project__meta__date">{{ project.dates }}</dd>
+          </dl>
+        </header>
+
+        <div class="code-project__body">
+          {{ project.content }}
+        </div>
+      </div>
+    </article>
+  {% endfor %}
+</section>

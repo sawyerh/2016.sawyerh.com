@@ -21,9 +21,9 @@ defaults:
     path: ''
     type: projects
   values:
-    external_link: 
-    dates: 
-    section: 
+    external_link:
+    dates:
+    section: featured
 url: http://www.sawyerh.com
 sass:
   style: compressed

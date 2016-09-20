@@ -1,9 +1,9 @@
 ---
 ---
 
-@import 'toolbox';
-@import 'variables';
-@import 'symbolset';
+@import 'utils/toolbox';
+@import 'utils/variables';
+@import 'utils/symbolset';
 
 * {
   @include box-sizing(border-box)
@@ -104,6 +104,9 @@ img, video{
   }
 }
 
+.heading--projects {
+  animation: showAboveFold 1.5s ease 400ms both;
+}
 
 // FOOTER
 // ========================================================
@@ -121,164 +124,6 @@ img, video{
 
   a{
     color: #000;
-  }
-}
-
-// Video
-// ========================================================
-.video__container{
-  position: relative;
-  padding-top: 9/16 * 100%;
-}
-
-.video__play--overlay{
-  @include transform("translate3d(-50%, -50%, 0)");
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 150px;
-  height: 150px;
-  z-index: 2;
-
-  @include max-width(640px){
-    width: 90px;
-    height: 90px;
-  }
-}
-
-.project__note .video__play--overlay{
-  width: 90px;
-  height: 90px;
-}
-
-.video__play{
-  background: url("/assets/images/play.svg") center center no-repeat;
-  background-size: contain;
-  text-indent: -9999px;
-  outline: none;
-
-  &:hover{
-    opacity: 0.9;
-  }
-}
-
-.video__controls{
-  padding-left: 35px;
-  min-height: 25px;
-  position: relative;
-  margin-top: 7px;
-  padding-top: (25px - $h_video_timeline) / 2;
-}
-
-.video__play--control{
-  @include vertAlign;
-  left: 0;
-  width: 25px;
-  height: 25px;
-}
-
-.video, .video__poster{
-  opacity: 0.75;
-  transition: 300ms opacity ease;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-
-.video__poster {
-  margin: 0;
-  padding: 0;
-  background: center top no-repeat;
-  background-size: contain;
-  display: none;
-}
-
-.video__timeline{
-  background: #515151;
-  border-radius: $h_video_timeline;
-  height: $h_video_timeline;
-  position: relative;
-  cursor: pointer;
-  transition: 250ms all ease;
-}
-
-.video__progress{
-  position: absolute;
-  left: 0;
-  top: 0;
-  height: 100%;
-  background: #fff;
-  border-radius: $h_video_timeline;
-  pointer-events: none;
-}
-
-.video__keyframe{
-  @include vertAlign;
-  text-indent: -9999px;
-  width: $h_video_timeline + 11;
-  height: $h_video_timeline + 11;
-  background: $text_dark;
-  border: 2px solid $bg_default;
-  border-radius: 50%;
-  outline: none;
-
-  &:hover{
-    background: #fff;
-  }
-}
-
-.video__keyframe__tooltip{
-  @include transform("translateX(-50%)");
-  background: #fff;
-  font-size: em($font_size_small);
-  position: absolute;
-  top: 100%;
-  margin-left: $h_video_timeline;
-  display: none;
-  padding: 6px 10px 7px;
-  margin-top: 10px;
-  color: $bg_default;
-  border-radius: 3px;
-
-  &.is-visible{
-    display: block;
-  }
-}
-
-.is-playing{
-  .video__play{
-    background-image: url("/assets/images/pause.svg");
-  }
-
-  .video__play--overlay{
-    display: none;
-  }
-
-  .video{
-    opacity: 1;
-  }
-}
-
-.is-loading{
-  .video__play--overlay{
-    display: none;
-  }
-
-  .video__container{
-    &:before{
-      @include transform("translate3d(-50%, -50%, 0)");
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      content: '';
-      display: block;
-      width: 90px;
-      height: 90px;
-      background: url("/assets/images/loader.gif") center center no-repeat;
-      z-index: $z_above_galaxy;
-    }
   }
 }
 
@@ -421,178 +266,6 @@ a.social-icon--spotify{
   }
 }
 
-// PROJECTS
-// ========================================================
-.heading--projects {
-  animation: showAboveFold 1.5s ease 400ms both;
-}
-
-.project__media{
-  width: 100%;
-  margin-bottom: em($gutter);
-  border-radius: 3px;
-
-  @include max-width($bp_project_header_stacked){
-    margin-bottom: 10px;
-  }
-}
-
-.project__media__wrap .galaxy{
-  bottom: $gutter * -1;
-}
-
-.project__meta{
-  font-size: em($font_size_small);
-  color: $text_dark;
-  margin: 0 0 em($gutter);
-  padding: 0;
-
-  a{
-    color: $text_dark;
-  }
-
-  dt{
-    display: none;
-  }
-
-  dd{
-    margin: 0 0 3px;
-    padding: 0;
-  }
-}
-
-.project__notes-toggle{
-  border-bottom: 2px solid $text_white;
-  color: $text_white;
-  font-weight: bold;
-  font-size: em($font_size_body);
-  font-family: $sans_serif;
-
-  &:hover{
-    opacity: 0.7;
-  }
-}
-
-@include min-width($bp_project_header_stacked){
-  .project__info{
-    padding-left: $w_project_sidebar;
-    position: relative;
-  }
-
-  .project__header{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: $w_project_sidebar;
-    padding-right: 10px;
-  }
-
-  .project__body{
-    max-width: $w_project_body;
-  }
-}
-
-@include min-width($bp_project_body_left_align){
-  .project__info{
-    padding-right: $w_project_sidebar;
-  }
-}
-
-.project__note{
-  @include clearfix;
-  padding-top: em($gutter);
-  font-size: em($font_size_small);
-}
-
-.project__note__title{
-  font-size: em($font_size_subheading, $font_size_small);
-}
-
-.project__note__body{
-  max-width: $w_project_note_body;
-  margin: auto;
-}
-
-.project__note__media__wrap{
-  max-width: $w_wrap - $w_project_note_body;
-  margin: 0 auto 20px;
-}
-
-@include min-width($bp_project_note_stacked){
-  .project__note__body{
-    float: left;
-    width: perc($w_project_note_body);
-  }
-
-  .project__note__media__wrap{
-    float: right;
-    padding-left: 30px;
-    margin-bottom: 0;
-    width: 100% - perc($w_project_note_body);
-  }
-}
-
-// Additional projects
-// ========================================================
-.ad-projects{
-  @include clearfix;
-  margin-bottom: em($gutter);
-  padding-bottom: em($gutter * 0.5);
-}
-
-.ad-project{
-  margin: 0 auto 4%;
-  font-size: em($font_size_small);
-  text-align: center;
-
-  @include min-width($bp_ad_project_stacked){
-    width: 48%;
-    float: left;
-
-    &:nth-of-type(2n){
-      margin-left: 2%;
-    }
-  }
-}
-
-.ad-project__image__wrap{
-  position: relative;
-  margin-bottom: 10px;
-  text-decoration: none;
-  display: block;
-
-  &:hover .ad-project__image{
-    opacity: 0.5;
-  }
-}
-
-.ad-project__image{
-  opacity: 0.3;
-  vertical-align: bottom;
-}
-
-.ad-project__title{
-  @include vertAlign;
-  width: 100%;
-  font-weight: 300;
-  font-size: em($font_size_heading, $font_size_small);
-  text-shadow: 0 1px 3px rgba(#000, 0.5);
-  margin: 0;
-}
-
-.ad-project__subtitle{
-  font-size: em($font_size_small, $font_size_small);
-  margin: 0 0 3px;
-
-  @include min-width($bp_ad_project_stacked){
-    @include ellipsis;
-  }
-}
-
-.ad-project__meta{
-  color: $text_dark;
-}
-
 // Archived projects
 // ========================================================
 .archived-projects{
@@ -643,3 +316,8 @@ a.social-icon--spotify{
     max-width: 700px;
   }
 }
+
+@import 'components/additional-projects';
+@import 'components/code-project';
+@import 'components/project';
+@import 'components/video';

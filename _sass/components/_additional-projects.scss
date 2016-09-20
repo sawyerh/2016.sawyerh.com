@@ -1,0 +1,61 @@
+@import 'utils/toolbox';
+@import 'utils/variables';
+
+.ad-projects{
+  @include clearfix;
+  margin-bottom: em($gutter);
+  padding-bottom: em($gutter * 0.5);
+}
+
+.ad-project{
+  margin: 0 auto 4%;
+  font-size: em($font_size_small);
+  text-align: center;
+
+  @include min-width($bp_ad_project_stacked){
+    width: 48%;
+    float: left;
+
+    &:nth-of-type(2n){
+      margin-left: 2%;
+    }
+  }
+}
+
+.ad-project__image__wrap{
+  position: relative;
+  margin-bottom: 10px;
+  text-decoration: none;
+  display: block;
+
+  &:hover .ad-project__image{
+    opacity: 0.5;
+  }
+}
+
+.ad-project__image{
+  opacity: 0.3;
+  vertical-align: bottom;
+}
+
+.ad-project__title{
+  @include vertAlign;
+  width: 100%;
+  font-weight: 300;
+  font-size: em($font_size_heading, $font_size_small);
+  text-shadow: 0 1px 3px rgba(#000, 0.5);
+  margin: 0;
+}
+
+.ad-project__subtitle{
+  font-size: em($font_size_small, $font_size_small);
+  margin: 0 0 3px;
+
+  @include min-width($bp_ad_project_stacked){
+    @include ellipsis;
+  }
+}
+
+.ad-project__meta{
+  color: $text_dark;
+}

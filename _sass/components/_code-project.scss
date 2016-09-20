@@ -1,0 +1,82 @@
+@import 'utils/toolbox';
+@import 'utils/variables';
+
+
+@include min-width ($bp_font_size_body_downsized + 1) {
+  .code-projects {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+  }
+}
+
+.code-project {
+  border: 1px solid $border_color;
+  border-radius: 4px;
+  width: 32%;
+  font-size: em($font_size_small);
+
+  @include max-width ($bp_font_size_body_downsized) {
+    width: 100%;
+    margin-bottom: $gutter / 2;
+  }
+}
+
+.code-project__header {
+  background: #fff;
+  border-radius: 4px 4px 0 0;
+  color: #111;
+
+  a {
+    color: #000;
+  }
+}
+
+.code-project__header,
+.code-project__body {
+  padding: $gutter / 2;
+
+  @include max-width ($bp_font_size_body_downsized) {
+    padding: $gutter / 3;
+  }
+}
+
+.code-project__title {
+  font-size: 1em;
+  color: #000;
+}
+
+.code-project__meta {
+  margin: 0;
+  padding: 0;
+  line-height: 1.5;
+
+  dt {
+    display: none;
+  }
+
+  dd {
+    margin: 0;
+  }
+}
+
+.code-project__meta__link {
+  @include ellipsis;
+  display: block;
+  background: url('/assets/images/github.svg') left 1px no-repeat;
+  min-height: 18px;
+  background-size: 18px;
+  padding-left: 18px + 5px;
+}
+
+.code-project__meta__date {
+  color: #666;
+}
+
+.code-project__body p {
+  margin-bottom: 1em;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}

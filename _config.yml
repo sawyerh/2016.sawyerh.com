@@ -36,10 +36,11 @@ exclude:
 - bower_components/
 - package.json
 - webpack.config.js
-footer_content: Content managed with [Siteleaf](http://siteleaf.com). Site hosted
-  on [AWS](http://aws.amazon.com). Europa typeface hosted by [Typekit](http://typekit.com).
-  Icon font by [Symbolset](http://symbolset.com). Designed in [Sketch](https://www.sketchapp.com/).
-  Written in [Sublime Text 3](http://www.sublimetext.com/). Built in [NYC](https://media.giphy.com/media/7mUhYZhzb8AM/giphy.gif).
+footer_content: Built on [Jekyll](http://jekyllrb.com/). Managed with [Siteleaf](http://siteleaf.com).
+  Hosted on [AWS](http://aws.amazon.com). Soleil typeface by [Type Together](http://www.type-together.com/)
+  and served via [Typekit](http://typekit.com). Icon font by [Symbolset](http://symbolset.com).
+  Designed in [Sketch](https://www.sketchapp.com/). Written in [Sublime Text](http://www.sublimetext.com/).
+  Built in [NYC](https://media.giphy.com/media/7mUhYZhzb8AM/giphy.gif).
 google_analytics: 3634425-8
 gems:
 - jekyll-sitemap

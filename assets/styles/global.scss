@@ -108,8 +108,8 @@ h1, h2, h3, h4, strong {
   }
 }
 
-.heading--projects {
-  animation: showAboveFold 1.5s ease 400ms both;
+.heading--projects, .video__container {
+  animation: fadeIn 1.5s ease 400ms both;
 }
 
 // FOOTER
@@ -133,15 +133,13 @@ h1, h2, h3, h4, strong {
 
 // INTRO
 // ========================================================
-@keyframes showAboveFold {
+@keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translate3d(0, 10px, 0);
   }
 
   to {
     opacity: 1;
-    transform: translate3d(0, 0, 0);
   }
 }
 
@@ -167,7 +165,7 @@ h1, h2, h3, h4, strong {
 }
 
 .intro__avatar{
-  animation: showAboveFold 1.5s ease 100ms both;
+  animation: fadeIn 1.5s ease 100ms both;
   width: 150px;
   height: 150px;
   border-radius: 50%;
@@ -190,7 +188,7 @@ h1, h2, h3, h4, strong {
 }
 
 .intro__body__text{
-  animation: showAboveFold 1.5s ease 400ms both;
+  animation: fadeIn 1.5s ease 400ms both;
   max-width: 640px;
 
   a {
@@ -244,7 +242,7 @@ a.social-icon--spotify{
 }
 
 .external-nav {
-  animation: showAboveFold 1.5s ease 400ms both;
+  animation: fadeIn 1.5s ease 400ms both;
   margin-top: $gutter / 2;
 }
 

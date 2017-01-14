@@ -13,4 +13,4 @@ colors:
 layout: home
 ---
 
-I’m a product designer and developer interested in prototyping, designing, and building practical, purpose-driven digital products. I’m currently a partner at [Oak Studios](http://oak.is).
+I’m a designer and front-end developer interested in prototyping, designing, and building practical, purpose-driven digital products. Currently at [Nava](http://navahq.com) creating software that radically improves how our government serves people.

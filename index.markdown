@@ -1,7 +1,7 @@
 ---
 title: Home
 date: 2015-12-28 13:47:00 -05:00
-image: "/uploads/colorful.jpg"
+image: "/uploads/dc.jpg"
 seo_title: 'Sawyer Hollenshead (@sawyerh): Product designer and developer'
 seo_desc: Sawyer Hollenshead is a product designer and developer currently at Oak
   Studios.

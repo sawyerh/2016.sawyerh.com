@@ -13,4 +13,4 @@ colors:
 layout: home
 ---
 
-I’m a designer and front-end developer interested in prototyping, designing, and building practical, purpose-driven digital products. Currently at [Nava](http://navahq.com) creating software that radically improves how our government serves people.
+I’m a designer and front-end developer interested in prototyping, designing, and building practical, purpose-driven digital products. Currently at [Nava](http://navahq.com) working with government agencies to improve their digital services.

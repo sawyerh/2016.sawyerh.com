@@ -3,7 +3,7 @@ title: Siteleaf
 date: 2015-12-28 13:49:00 -05:00
 position: 6
 external_link: http://siteleaf.com
-dates: 2013–2017
+dates: 2013–2016
 video:
   mp4: "/uploads/siteleaf-v2.mp4"
 colors:

@@ -3,7 +3,7 @@ title: Dropmark
 date: 2015-12-28 13:50:00 -05:00
 position: 5
 external_link: http://dropmark.com
-dates: 2012–Present
+dates: 2012–2017
 video:
   mp4: "/uploads/collection-and-item.mp4"
 colors:
